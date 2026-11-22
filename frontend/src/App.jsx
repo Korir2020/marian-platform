@@ -12,6 +12,7 @@ import IndependentLearningStatus from "./IndependentLearningStatus";
 import { OfflineUnlock } from "./offline/OfflineComponents";
 import PathwayPicker from "./site/PathwayPicker";
 import LevelPicker from "./site/LevelPicker";
+import LearnerSignup from "./site/LearnerSignup";
 import { clearOfflineData } from "./offline/offlineStore";
 import { SiteHome, SiteSchool, SiteLearning } from "./site/SitePages";
 import "./app.css";
@@ -71,7 +72,8 @@ const [level, setLevel] = useState(null);
   if (scr === "login") return <Login onDone={() => { if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search); setOk(true); }} onForgot={to("recovery")} onBack={to("landing")} onJoin={to("join")} onRegister={to("school-register")} />;
   if (scr === "recovery") return <PasswordRecovery onBack={to("login")} />;
   if (scr === "pathways") return <PathwayPicker go={setScr} onContinue={to("levels")} />;
-if (scr === "levels") return <LevelPicker go={setScr} level={level} onContinue={(l) => { setLevel(l); setScr("join"); }} />;
+if (scr === "levels") return <LevelPicker go={setScr} level={level} onContinue={(l) => { setLevel(l); setScr("learner-signup"); }} />;
+if (scr === "learner-signup") return <LearnerSignup go={setScr} onSignIn={to("login")} />;
   if (scr === "join") {
     return <Join onBack={to("landing")} onSignIn={to("login")} />;
   }
