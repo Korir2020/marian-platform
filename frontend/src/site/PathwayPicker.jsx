@@ -1,122 +1,73 @@
-import { useState } from "react";
-import { BookOpen, Globe2, Landmark, Award, GraduationCap, Compass, Cpu, Briefcase, Wrench, Palette, Languages, TrendingUp, Lightbulb, ArrowRight, Sparkles, Search, ChevronDown, Check } from "lucide-react";
-import "./pathway.css";
+import { useState } from 'react';
+import { PageShell } from './SiteChrome';
 
-const academic = [
-  { title: "CBC", ready: true, desc: "PP1 – Grade 12, Kenya's Competency-Based Curriculum", icon: BookOpen, c: 1, topics: ["Pre-Primary", "Primary", "Junior School", "Senior School"] },
-  { title: "Cambridge International", desc: "Primary, Lower Secondary, IGCSE & A Level", icon: Globe2, c: 2, topics: ["Primary", "Checkpoint", "IGCSE", "AS & A Level"] },
-  { title: "British Curriculum", desc: "Key Stages 1–5, GCSE and A Levels", icon: Landmark, c: 3, topics: ["KS1–KS3", "GCSE", "A Levels"] },
-  { title: "Pearson Edexcel", desc: "International GCSE and International A Level", icon: Award, c: 4, topics: ["iPrimary", "iLowerSecondary", "IGCSE", "IAL"] },
-  { title: "University & College", desc: "Degree, diploma and certificate support", icon: GraduationCap, c: 5, topics: ["Sciences", "Engineering", "Humanities", "Exam prep"] },
-  { title: "Other International", desc: "IB, American and more global curricula", icon: Compass, c: 6, topics: ["IB", "American", "Australian", "French"] },
+const levels = ['Pre-Primary', 'Primary', 'Junior School', 'Senior School'];
+const others = [
+  'Cambridge International', 'British Curriculum', 'Pearson Edexcel',
+  'University & College', 'Other International', 'Technology, Coding & AI',
+  'Business & Entrepreneurship', 'Technical & Vocational',
+  'Creative Arts & Design', 'Languages & Communication',
+  'Professional & Career', 'General Knowledge & Lifelong',
 ];
+const line = '1px solid color-mix(in oklab, var(--learn-deep) 16%, transparent)';
+const S = {
+  wrap: { maxWidth: 480, margin: '0 auto', padding: '1.25rem 1rem 2rem' },
+  step: { fontSize: '0.75rem', fontWeight: 600, color: 'var(--learn-deep)', letterSpacing: '0.04em', textTransform: 'uppercase' },
+  h1: { fontFamily: 'Fraunces, serif', fontSize: '1.5rem', margin: '0.25rem 0 0.75rem' },
+  search: { width: '100%', boxSizing: 'border-box', height: '2.25rem', padding: '0 0.75rem', fontSize: '0.875rem', border: line, borderRadius: 9999, background: 'transparent', marginBottom: '1rem' },
+  card: { border: '1.5px solid var(--learn)', borderRadius: 12, padding: '0.875rem', background: 'var(--learn-soft)', marginBottom: '1rem' },
+  cardT: { fontFamily: 'Fraunces, serif', fontSize: '1.0625rem', fontWeight: 600 },
+  cardD: { fontSize: '0.8125rem', margin: '0.25rem 0 0.625rem', opacity: 0.8 },
+  chips: { display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginBottom: '0.75rem' },
+  chip: { fontSize: '0.75rem', padding: '0.2rem 0.6rem', borderRadius: 9999, border: line },
+  grid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' },
+  tile: { border: line, borderRadius: 10, padding: '0.5rem 0.625rem', opacity: 0.7 },
+  tileT: { fontSize: '0.8125rem', fontWeight: 600 },
+  soon: { fontSize: '0.6875rem', opacity: 0.7 },
+  label: { fontSize: '0.75rem', fontWeight: 600, margin: '0 0 0.5rem', opacity: 0.8 },
+};
 
-const beyond = [
-  { title: "Technology, Coding & AI", desc: "Build, code and create with tomorrow's tools", icon: Cpu, c: 2, topics: ["Python", "Web dev", "AI basics", "Robotics"] },
-  { title: "Business & Entrepreneurship", desc: "Turn ideas into ventures that grow", icon: Briefcase, c: 4, topics: ["Startups", "Finance", "Marketing", "Leadership"] },
-  { title: "Technical & Vocational", desc: "Hands-on skills for real-world work", icon: Wrench, c: 3, topics: ["Electrical", "Hospitality", "Fashion", "Agribusiness"] },
-  { title: "Creative Arts & Design", desc: "Express, design and tell stories", icon: Palette, c: 5, topics: ["Graphic design", "Music", "Film", "Photography"] },
-  { title: "Languages & Communication", desc: "Speak, write and connect with the world", icon: Languages, c: 6, topics: ["English", "Kiswahili", "French", "Public speaking"] },
-  { title: "Professional & Career", desc: "Grow your career with confidence", icon: TrendingUp, c: 1, topics: ["CV & interviews", "Project mgmt", "Soft skills"] },
-  { title: "General Knowledge & Lifelong", desc: "Stay curious at every stage of life", icon: Lightbulb, c: 7, topics: ["Health", "Financial literacy", "History", "Science"] },
-];
-
-function Stars() {
-  const s = Array.from({ length: 40 }, (_, i) => ({ l: (i * 37) % 100, t: (i * 53) % 100, d: (i % 7) * 0.4 }));
+export default function PathwayPicker({ go, onContinue }) {
+  const [q, setQ] = useState('');
+  const t = q.trim().toLowerCase();
+  const showCbc = !t || 'cbc kenya competency-based curriculum'.includes(t);
+  const list = others.filter((n) => n.toLowerCase().includes(t));
   return (
-    <div aria-hidden className="pl-stars">
-      {s.map((x, i) => <span key={i} className="pl-star" style={{ left: `${x.l}%`, top: `${x.t}%`, animationDelay: `${x.d}s` }} />)}
-    </div>
-  );
-}
-
-function Orbit() {
-  return (
-    <div aria-hidden className="pl-orbit">
-      <div className="pl-ring"><span className="pl-dot pl-d1" /><span className="pl-dot pl-d2" /></div>
-      <div className="pl-ring pl-ring2"><span className="pl-dot pl-d3" /></div>
-      <div className="pl-core"><Sparkles size={48} /></div>
-    </div>
-  );
-}
-
-function PathCard({ p, i, selected, onSelect }) {
-  const [open, setOpen] = useState(false);
-  const Icon = p.icon;
-  const pick = p.ready ? onSelect : () => {};
-  return (
-    <article onClick={pick} role="button" tabIndex={0} aria-pressed={selected}
-      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), pick())}
-      className={"pl-glass pl-card" + (selected ? " on" : "") + (p.ready ? "" : " soon")} style={{ animationDelay: `${i * 70}ms` }}>
-      <span className="pl-check">{selected && <Check size={16} />}</span>
-      <div className={"pl-ico pl-c" + p.c}><Icon size={28} /></div>
-      <h3>{p.title}</h3>
-      <p className="pl-lv">{p.topics.length} levels to explore</p>
-      <p className="pl-desc">{p.desc}</p>
-      <div className={"pl-more" + (open ? " open" : "")}><div>{p.topics.map((t) => <span key={t}>{t}</span>)}</div></div>
-      <div className="pl-row">
-        <button className={"pl-see" + (open ? " open" : "")} onClick={(e) => { e.stopPropagation(); setOpen(!open); }}>{open ? "Hide" : "See"} levels <ChevronDown size={16} /></button>
-        <button className="pl-choose" aria-label={`Choose ${p.title}`} disabled={!p.ready} onClick={(e) => { e.stopPropagation(); pick(); }}>{!p.ready ? "Coming soon" : selected ? "Chosen" : "Choose"} {p.ready && <ArrowRight size={16} />}</button>
-      </div>
-    </article>
-  );
-}
-
-function Section({ id, eyebrow, title, sub, items, q, sel, setSel }) {
-  const list = items.filter((p) => (p.title + p.desc + p.topics.join(" ")).toLowerCase().includes(q.toLowerCase()));
-  if (!list.length) return null;
-  return (
-    <section id={id} className="pl-wrap pl-sec">
-      <p className="pl-eyebrow">{eyebrow}</p>
-      <h2 className="pl-h2">{title}</h2>
-      <p className="pl-sec-sub">{sub}</p>
-      <div className="pl-grid">
-        {list.map((p, i) => <PathCard key={p.title} p={p} i={i} selected={sel === p.title} onSelect={() => setSel(sel === p.title ? null : p.title)} />)}
-      </div>
-    </section>
-  );
-}
-
-export default function PathwayPicker({ onContinue }) {
-  const [q, setQ] = useState("");
-  const [tab, setTab] = useState("all");
-  const [sel, setSel] = useState(null);
-  const tabs = [
-    { k: "all", l: "All pathways", n: academic.length + beyond.length },
-    { k: "academic", l: "Academic", n: academic.length },
-    { k: "beyond", l: "Beyond", n: beyond.length },
-  ];
-  const match = (p) => (p.title + p.desc + p.topics.join(" ")).toLowerCase().includes(q.toLowerCase());
-  const empty = q && ![...academic, ...beyond].some(match);
-  return (
-    <main className="pl pl-main">
-      <Stars />
-      <header className="pl-glass pl-head"><div className="pl-wrap">
-        <span className="pl-logo"><b>Marian</b> <i>Learning</i></span>
-        <span className="pl-step">Step 1 of 3 · Choose a pathway</span>
-      </div></header>
-      <section className="pl-wrap pl-hero">
-        <div>
-          <span className="pl-glass pl-chip"><Sparkles size={14} /> Your personalized learning universe</span>
-          <h1 className="pl-h1">Where will your <span className="pl-gold">curiosity</span> take you?</h1>
-          <p className="pl-sub">Pick a pathway built around you — from classroom curricula to the skills that shape your future.</p>
-          <label className="pl-glass pl-search"><Search size={20} />
-            <input aria-label="Search pathways" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search IGCSE, coding, Kiswahili…" />
-          </label>
+    <PageShell go={go} active="site-learning">
+      <div style={S.wrap}>
+        <div style={S.step}>Step 1 of 3</div>
+        <h1 style={S.h1}>Choose your pathway</h1>
+        <input
+          style={S.search}
+          type="search"
+          placeholder="Search pathways"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+        />
+        {showCbc && (
+          <div style={S.card}>
+            <div style={S.cardT}>CBC</div>
+            <div style={S.cardD}>PP1 to Grade 12, Kenya's Competency-Based Curriculum</div>
+            <div style={S.chips}>
+              {levels.map((l) => (
+                <span key={l} style={S.chip}>{l}</span>
+              ))}
+            </div>
+            <button type="button" className="mw-btn mw-btn--learn mw-btn--sm" onClick={onContinue}>
+              Continue
+            </button>
+          </div>
+        )}
+        {list.length > 0 && <p style={S.label}>More pathways</p>}
+        <div style={S.grid}>
+          {list.map((n) => (
+            <div key={n} style={S.tile}>
+              <div style={S.tileT}>{n}</div>
+              <div style={S.soon}>Coming soon</div>
+            </div>
+          ))}
         </div>
-        <Orbit />
-      </section>
-      <div className="pl-wrap pl-tabbar"><div role="tablist" className="pl-glass pl-tabs">
-        {tabs.map((t) => <button key={t.k} role="tab" aria-selected={tab === t.k} className="pl-tab" onClick={() => setTab(t.k)}>{t.l}<span>{t.n}</span></button>)}
-      </div></div>
-      {empty && <p className="pl-empty">No pathways match "{q}". <button onClick={() => setQ("")}>Clear search</button></p>}
-      {tab !== "beyond" && <Section id="academic" q={q} sel={sel} setSel={setSel} eyebrow="Pathway 01" title="Academic Learning" sub="Master your curriculum with lessons, practice and guidance tailored to your level." items={academic} />}
-      {tab !== "academic" && <Section id="beyond" q={q} sel={sel} setSel={setSel} eyebrow="Pathway 02" title="Beyond the Curriculum" sub="Discover skills, passions and careers that go far beyond the classroom." items={beyond} />}
-      <div className={"pl-bar" + (sel ? " on" : "")}><div className="pl-bar-in">
-        <div><p>Your pathway</p><p>{sel}</p></div>
-        <button className="pl-go" onClick={() => onContinue && onContinue(sel)}>Continue <ArrowRight size={16} /></button>
-      </div></div>
-      <footer className="pl-foot">© Marian Personalized Learning</footer>
-    </main>
+      </div>
+    </PageShell>
   );
 }

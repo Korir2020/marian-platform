@@ -19,6 +19,8 @@ import "./light.css";
 // Signed-in dashboards load on demand so the landing page stays small.
 const Dash = lazy(() => import("./Dash"));
 
+let historyBooted = false;
+
 export default function App() {
   const [ok, setOk] = useState(!!localStorage.getItem("in"));
   const [scr, setScr] = useState(() => window.location.search.includes("site=1") ? "site-home" : window.location.search.includes("recovery=1") ? "recovery" : "landing");
@@ -38,6 +40,15 @@ export default function App() {
     return () => window.removeEventListener("marian:suspended", h);
   }, []);
   const to = (x) => () => setScr(x);
+  useEffect(() => {
+    if (!historyBooted) { historyBooted = true; window.history.replaceState({ scr }, ""); return; }
+    if (!window.history.state || window.history.state.scr !== scr) window.history.pushState({ scr }, "");
+  }, [scr]);
+  useEffect(() => {
+    const onPop = (e) => { if (e.state && e.state.scr) setScr(e.state.scr); };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
   if (offlineRequired && !offlineSession) return <OfflineUnlock onUnlock={(payload, passphrase) => { setOfflineSession({ payload, passphrase }); setOfflineRequired(false); }} onForget={forgetDevice} />;
   if (blocked) return (
     <div role="alert" style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
@@ -57,7 +68,7 @@ export default function App() {
   if (scr === "site-learning") return <SiteLearning go={setScr} />;
   if (scr === "login") return <Login onDone={() => { if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search); setOk(true); }} onForgot={to("recovery")} onBack={to("landing")} onJoin={to("join")} onRegister={to("school-register")} />;
   if (scr === "recovery") return <PasswordRecovery onBack={to("login")} />;
-  if (scr === "pathways") return <PathwayPicker onContinue={to("join")} />;
+  if (scr === "pathways") return <PathwayPicker go={setScr} onContinue={to("join")} />;
   if (scr === "join") {
     return <Join onBack={to("landing")} onSignIn={to("login")} />;
   }
