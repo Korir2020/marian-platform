@@ -11,6 +11,7 @@ import SchoolStatus from "./SchoolStatus";
 import IndependentLearningStatus from "./IndependentLearningStatus";
 import { OfflineUnlock } from "./offline/OfflineComponents";
 import PathwayPicker from "./site/PathwayPicker";
+import LevelPicker from "./site/LevelPicker";
 import { clearOfflineData } from "./offline/offlineStore";
 import { SiteHome, SiteSchool, SiteLearning } from "./site/SitePages";
 import "./app.css";
@@ -40,6 +41,7 @@ export default function App() {
     return () => window.removeEventListener("marian:suspended", h);
   }, []);
   const to = (x) => () => setScr(x);
+const [level, setLevel] = useState(null);
   useEffect(() => {
     if (!historyBooted) { historyBooted = true; window.history.replaceState({ scr }, ""); return; }
     if (!window.history.state || window.history.state.scr !== scr) window.history.pushState({ scr }, "");
@@ -68,7 +70,8 @@ export default function App() {
   if (scr === "site-learning") return <SiteLearning go={setScr} />;
   if (scr === "login") return <Login onDone={() => { if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search); setOk(true); }} onForgot={to("recovery")} onBack={to("landing")} onJoin={to("join")} onRegister={to("school-register")} />;
   if (scr === "recovery") return <PasswordRecovery onBack={to("login")} />;
-  if (scr === "pathways") return <PathwayPicker go={setScr} onContinue={to("join")} />;
+  if (scr === "pathways") return <PathwayPicker go={setScr} onContinue={to("levels")} />;
+if (scr === "levels") return <LevelPicker go={setScr} level={level} onContinue={(l) => { setLevel(l); setScr("join"); }} />;
   if (scr === "join") {
     return <Join onBack={to("landing")} onSignIn={to("login")} />;
   }
