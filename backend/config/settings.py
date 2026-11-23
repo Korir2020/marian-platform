@@ -224,6 +224,7 @@ if os.environ.get("DB_NAME"):
         "HOST": os.environ.get("DB_HOST", "localhost"),
         "PORT": os.environ.get("DB_PORT", "5432"),
         "CONN_MAX_AGE": 60,
+        "OPTIONS": {"sslmode": os.environ.get("DB_SSLMODE", "prefer")},
     }
 elif not DEBUG:
     raise ImproperlyConfigured("Set DB_NAME (PostgreSQL) when DEBUG is off.")
