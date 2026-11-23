@@ -421,3 +421,12 @@ urlpatterns += [
     path('api/backups/validate/', validate_backup),
     path('api/school/export/', school_export_view),
 ]
+
+# Content Studio V3
+from django.urls import include
+urlpatterns += [
+    path('api/content/v1/', include('authoring.urls')),
+    path('api/content/v1/', include('catalog.urls')),
+    path('api/content/v1/', include('governance.urls')),
+    path('api/content/v1/', include('integration.urls')),
+]
