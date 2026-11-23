@@ -1,6 +1,6 @@
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import SimpleRouter
 from .views import AssessmentViewSet, LessonViewSet, ProjectViewSet
-router=DefaultRouter()
+router=SimpleRouter()
 router.register("lessons", LessonViewSet)
 router.register("assessments", AssessmentViewSet)
 router.register("projects", ProjectViewSet)
