@@ -52,6 +52,7 @@ self.addEventListener('fetch', (event) => {
 
 export default defineConfig({
   plugins: [react(), staticShellServiceWorker()],
+  build: { rollupOptions: { input: { main: 'index.html', studio: 'studio.html' } } },
   server: { allowedHosts: ['.manus.computer'], proxy: { '/api': { target: process.env.VITE_API_TARGET || 'https://school-ai-platform.onrender.com', changeOrigin: true,
         configure: (p) => p.on('proxyReq', (r) => r.removeHeader('origin')) } } },
 })
