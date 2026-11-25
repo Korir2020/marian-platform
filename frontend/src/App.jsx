@@ -13,6 +13,7 @@ import { OfflineUnlock } from "./offline/OfflineComponents";
 import PathwayPicker from "./site/PathwayPicker";
 import LevelPicker from "./site/LevelPicker";
 import LearnerSignup from "./site/LearnerSignup";
+import PaymentGate from "./site/PaymentGate";
 import { clearOfflineData } from "./offline/offlineStore";
 import { SiteHome, SiteSchool, SiteLearning } from "./site/SitePages";
 import PathwayPage from "./site/PathwayPage";
@@ -78,6 +79,7 @@ const [level, setLevel] = useState(null);
   if (scr === "pathways") return <PathwayPicker go={setScr} onContinue={to("levels")} />;
 if (scr === "levels") return <LevelPicker go={setScr} level={level} onContinue={(l) => { setLevel(l); setScr("learner-signup"); }} />;
 if (scr === "learner-signup") return <LearnerSignup go={setScr} onSignIn={to("login")} />;
+if (scr === "payment-gate") return <PaymentGate go={setScr} />;
   if (scr === "join") {
     return <Join onBack={to("landing")} onSignIn={to("login")} />;
   }
