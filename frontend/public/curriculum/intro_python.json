@@ -1,0 +1,174 @@
+{
+  "status": "draft",
+  "key": "python",
+  "title": "Welcome to Python Programming",
+  "course_title": "Python Programming — Beginner",
+  "level": "beginner",
+  "learning_outcomes": [
+    "Describe a task as inputs, processing steps, and outputs before coding.",
+    "Write and run short Python scripts using variables, built-in types, arithmetic, and text.",
+    "Use conditions and loops to make a program choose and repeat instructions.",
+    "Organize related information with lists and dictionaries and reuse work with functions.",
+    "Handle common conversion errors, test representative cases, and explain a small program."
+  ],
+  "module_titles": [
+    "Start with Python and clear instructions",
+    "Use data, text, and decisions",
+    "Repeat work and organize reusable data",
+    "Combine structures and build confidently"
+  ],
+  "sections": [
+    {
+      "heading": "What is Python Programming?",
+      "body": "Python programming is the practice of writing instructions in the Python language so a computer can carry out a task. Think of it like writing a clear recipe: the computer follows each step in the order you give it."
+    },
+    {
+      "heading": "Why is it useful?",
+      "body": "Python can help people organise school information, analyse farm or weather records, automate repetitive small-business tasks, and build tools that work with data. It is also used to teach programming ideas and to create many kinds of software."
+    },
+    {
+      "heading": "What can you build or do with it?",
+      "body": "You will plan simple solutions, write and run short Python scripts, work with numbers and text, make decisions, repeat steps, and organise information. By the end, you will bring these skills together in a School Library Reading-List Helper."
+    },
+    {
+      "heading": "How to use these lessons",
+      "body": "Read each explanation, predict what the example will do, then try it yourself before checking the result. Use the knowledge checks to test your understanding and complete the activities to practise; when something fails, read the error and investigate rather than simply copying the example."
+    },
+    {
+      "heading": "What you need",
+      "body": "No programming experience is required; you should be able to read simple instructions. You need a school-approved computer or device that can run Python 3.10 or newer and a Python coding environment; internet is useful for setup and resources, but the course uses Python's standard library and does not require constant internet access."
+    }
+  ],
+  "terms": [
+    {
+      "term": "Program",
+      "meaning": "A set of instructions a computer can execute.",
+      "example": "A script that adds two prices.",
+      "how_used": "You use a program to turn a repeatable task into instructions the computer can follow.",
+      "when_to_use": "When a task has clear steps that a computer can perform.",
+      "why_it_matters": "It is the basic unit of what you build when programming.",
+      "practical_example": "total = 50 + 30\nprint(total)",
+      "example_explanation": "This program calculates a total and prints it."
+    },
+    {
+      "term": "Algorithm",
+      "meaning": "A finite, ordered set of steps for solving a problem.",
+      "example": "Add item prices, then show the total.",
+      "how_used": "You first plan the steps, then translate them into code.",
+      "when_to_use": "Before coding when the problem needs a clear solution process.",
+      "why_it_matters": "A good algorithm makes code easier to design, test, and explain.",
+      "practical_example": "1. Read two prices\\n2. Add them\\n3. Display the total",
+      "example_explanation": "The steps describe the solution before Python syntax is involved."
+    },
+    {
+      "term": "Input",
+      "meaning": "Information given to a program to work with.",
+      "example": "The price 50.",
+      "how_used": "In Python Programming, you use input as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use input when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding input helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "The price 50.",
+      "example_explanation": "This example shows input in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Process",
+      "meaning": "The work a program does with its input.",
+      "example": "Adding 50 and 30.",
+      "how_used": "In Python Programming, you use process as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use process when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding process helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Adding 50 and 30.",
+      "example_explanation": "This example shows process in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Output",
+      "meaning": "The result a program produces.",
+      "example": "80",
+      "how_used": "In Python Programming, you use output as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use output when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding output helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "80",
+      "example_explanation": "This example shows output in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Script",
+      "meaning": "A file containing instructions written in a programming language.",
+      "example": "library_helper.py",
+      "how_used": "In Python Programming, you use script as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use script when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding script helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "library_helper.py",
+      "example_explanation": "This example shows script in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Variable",
+      "meaning": "A named reference used to keep a value while a program runs.",
+      "example": "total = 80",
+      "how_used": "Assign a value to a name and use that name later.",
+      "when_to_use": "When a value needs to be stored, reused, or changed.",
+      "why_it_matters": "Clear variable names make programs understandable.",
+      "practical_example": "price = 250\\nquantity = 2\\ntotal = price * quantity",
+      "example_explanation": "Each variable stores information used in the calculation."
+    },
+    {
+      "term": "String",
+      "meaning": "A value made up of text characters.",
+      "example": "\"Hello\"",
+      "how_used": "In Python Programming, you use string as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use string when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding string helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "\"Hello\"",
+      "example_explanation": "This example shows string in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Integer",
+      "meaning": "A whole number without a decimal part.",
+      "example": "12",
+      "how_used": "In Python Programming, you use integer as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use integer when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding integer helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "12",
+      "example_explanation": "This example shows integer in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Float",
+      "meaning": "A number that can contain a decimal part.",
+      "example": "12.5",
+      "how_used": "In Python Programming, you use float as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use float when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding float helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "12.5",
+      "example_explanation": "This example shows float in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Boolean",
+      "meaning": "A value that is either True or False.",
+      "example": "is_open = True",
+      "how_used": "In Python Programming, you use boolean as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use boolean when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding boolean helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "is_open = True",
+      "example_explanation": "This example shows boolean in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Function",
+      "meaning": "A named group of instructions that can be used when needed.",
+      "example": "def greet():",
+      "how_used": "In Python Programming, you use function as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use function when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding function helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "def greet():",
+      "example_explanation": "This example shows function in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Error",
+      "meaning": "A problem that stops code from working as expected or gives an unintended result.",
+      "example": "A misspelled variable name.",
+      "how_used": "In Python Programming, you use error as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use error when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding error helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A misspelled variable name.",
+      "example_explanation": "This example shows error in a small, concrete situation. Try changing one part and observe what happens."
+    }
+  ]
+}
