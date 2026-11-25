@@ -100,7 +100,6 @@ export default function LearnerSignup({ go, onSignIn }) {
             )}
           </>
         )}
-        <button type="button" style={S.link} onClick={() => go('payment-gate')}>Preview payment screen (design only)</button>
       </div>
     </PageShell>
   );
