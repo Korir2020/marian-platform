@@ -46,6 +46,8 @@ export default function App() {
   }, []);
   const to = (x) => () => setScr(x);
 const [level, setLevel] = useState(null);
+const [gateBack, setGateBack] = useState('site-learning');
+const gateGo = (x) => (x === 'pathways' || x === 'payment-gate') ? (setGateBack(scr), setScr('payment-gate')) : setScr(x);
   useEffect(() => {
     if (!historyBooted) { historyBooted = true; window.history.replaceState({ scr }, ""); return; }
     if (!window.history.state || window.history.state.scr !== scr) window.history.pushState({ scr }, "");
@@ -71,15 +73,15 @@ const [level, setLevel] = useState(null);
   if (scr === "landing") return <SiteHome go={setScr} />;
   if (scr === "site-home") return <SiteHome go={setScr} />;
   if (scr === "site-school") return <SiteSchool go={setScr} />;
-  if (scr === "site-cybersecurity") return <CyberAcademyPage key={scr} go={setScr} />;
-  if (typeof scr === "string" && scr.startsWith("site-pathway-")) return <PathwayPage key={scr} go={setScr} slug={scr.slice(13)} />;
+  if (scr === "site-cybersecurity") return <CyberAcademyPage key={scr} go={gateGo} />;
+  if (typeof scr === "string" && scr.startsWith("site-pathway-")) return <PathwayPage key={scr} go={gateGo} slug={scr.slice(13)} />;
   if (scr === "site-learning") return <SiteLearning go={setScr} />;
   if (scr === "login") return <Login onDone={() => { if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search); setOk(true); }} onForgot={to("recovery")} onBack={to("landing")} onJoin={to("join")} onRegister={to("school-register")} />;
   if (scr === "recovery") return <PasswordRecovery onBack={to("login")} />;
   if (scr === "pathways") return <PathwayPicker go={setScr} onContinue={to("levels")} />;
 if (scr === "levels") return <LevelPicker go={setScr} level={level} onContinue={(l) => { setLevel(l); setScr("learner-signup"); }} />;
 if (scr === "learner-signup") return <LearnerSignup go={setScr} onSignIn={to("login")} />;
-if (scr === "payment-gate") return <PaymentGate go={setScr} />;
+if (scr === "payment-gate") return <PaymentGate go={setScr} back={gateBack} />;
   if (scr === "join") {
     return <Join onBack={to("landing")} onSignIn={to("login")} />;
   }

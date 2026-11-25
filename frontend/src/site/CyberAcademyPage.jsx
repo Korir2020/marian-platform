@@ -110,6 +110,7 @@ export default function CyberAcademyPage({ go }) {
                     );
                   })}
                 </ol>
+                <button type="button" className="mw-btn mw-btn--learn mw-btn--sm" style={{ marginTop: 16 }} onClick={() => go('payment-gate')}>Start the Academy</button>
               </>
             )}
 

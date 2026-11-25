@@ -4,10 +4,10 @@ import TrialBanner from './TrialBanner';
 import './payment.css';
 
 // DESIGN ONLY: price and trial length are placeholders. Nothing charges and nothing is wired.
-export default function PaymentGate({ go }) {
+export default function PaymentGate({ go, back }) {
   const [out, setOut] = useState(false);
   const [method, setMethod] = useState(null);
-  const close = () => { setOut(true); setTimeout(() => go('learner-signup'), 260); };
+  const close = () => { setOut(true); setTimeout(() => go(back || 'learner-signup'), 260); };
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') close(); };
     window.addEventListener('keydown', onKey);
