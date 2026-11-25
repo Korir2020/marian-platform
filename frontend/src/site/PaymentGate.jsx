@@ -1,34 +1,44 @@
+import { useEffect, useState } from 'react';
 import { PageShell } from './SiteChrome';
 import TrialBanner from './TrialBanner';
-
-const line = '1px solid color-mix(in oklab, var(--learn-deep) 16%, transparent)';
-const S = {
-  wrap: { maxWidth: 480, margin: '0 auto', padding: '1.25rem 1rem 2rem' },
-  h1: { fontFamily: 'Fraunces, serif', fontSize: '1.5rem', margin: '0.25rem 0 0.25rem' },
-  sub: { fontSize: '0.8125rem', opacity: 0.8, margin: '0 0 1rem' },
-  card: { border: '1.5px solid var(--learn)', borderRadius: 12, padding: '0.875rem', background: 'var(--learn-soft)', marginBottom: '1rem' },
-  price: { fontFamily: 'Fraunces, serif', fontSize: '1.25rem', fontWeight: 600 },
-  btn: { width: '100%', textAlign: 'left', padding: '0.75rem', borderRadius: 10, border: line, background: 'transparent', color: 'inherit', marginBottom: '0.5rem', opacity: 0.7 },
-  note: { fontSize: '0.75rem', opacity: 0.7, margin: '0 0 1rem' },
-  back: { fontSize: '0.875rem', background: 'none', border: 'none', color: 'var(--learn-deep)', cursor: 'pointer', padding: '0 0.5rem' },
-};
+import './payment.css';
 
 // DESIGN ONLY: price and trial length are placeholders. Nothing charges and nothing is wired.
 export default function PaymentGate({ go }) {
+  const [out, setOut] = useState(false);
+  const [method, setMethod] = useState(null);
+  const close = () => { setOut(true); setTimeout(() => go('learner-signup'), 260); };
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+  const item = (i) => ({ className: 'pg-item', style: { '--i': i } });
   return (
     <PageShell go={go} active="site-learning">
-      <div style={S.wrap}>
-        <TrialBanner />
-        <h1 style={S.h1}>Keep learning after your trial</h1>
-        <p style={S.sub}>Choose how you would like to pay.</p>
-        <div style={S.card}>
-          <div style={S.price}>KES [price] / month</div>
-          <div style={S.sub}>Placeholder price. To be decided.</div>
+      <div style={{ minHeight: '60vh' }} />
+      <div className={'pg-backdrop' + (out ? ' pg-out' : '')} onClick={close}>
+        <div className="pg-modal" role="dialog" aria-modal="true" aria-label="Payment" onClick={(e) => e.stopPropagation()}>
+          <div className="pg-grab" />
+          <button type="button" className="pg-x" aria-label="Close" onClick={close}>×</button>
+          <div {...item(0)}><TrialBanner /></div>
+          <h2 className="pg-h pg-item" style={{ '--i': 1 }}>Keep learning after your trial</h2>
+          <p className="pg-sub pg-item" style={{ '--i': 2 }}>Choose how you would like to pay.</p>
+          <div {...item(3)}>
+            <div className="pg-price">
+              <div className="pg-amt">KES [price] / month</div>
+              <div className="pg-sub" style={{ margin: 0 }}>Placeholder price. To be decided.</div>
+            </div>
+          </div>
+          <div {...item(4)}>
+            <button type="button" className={'pg-m' + (method === 'mpesa' ? ' on' : '')} onClick={() => setMethod('mpesa')}><span className="pg-dot" />M-Pesa</button>
+            <button type="button" className={'pg-m' + (method === 'card' ? ' on' : '')} onClick={() => setMethod('card')}><span className="pg-dot" />Card</button>
+          </div>
+          <div {...item(5)}>
+            <button type="button" className="pg-pay" disabled>Pay (not available yet)</button>
+            <p className="pg-note">Payments are not available yet. This screen is a design preview.</p>
+          </div>
         </div>
-        <button type="button" style={S.btn} disabled>M-Pesa (coming soon)</button>
-        <button type="button" style={S.btn} disabled>Card (coming soon)</button>
-        <p style={S.note}>Payments are not available yet. This screen is a design preview.</p>
-        <button type="button" style={S.back} onClick={() => go('site-learning')}>Back</button>
       </div>
     </PageShell>
   );
