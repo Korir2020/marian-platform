@@ -45,7 +45,8 @@ export function SiteHeader({ go, active }) {
         </nav>
         <div className="mw-header-cta">
           <button type="button" className="mw-btn mw-btn--ghost mw-btn--sm" onClick={() => nav("login")}>Sign in</button>
-          <button type="button" className="mw-btn mw-btn--ink mw-btn--sm mw-pill" onClick={() => nav("join")}>Get started</button>
+          <button type="button" className="mw-btn mw-btn--ghost mw-btn--sm mw-pill" onClick={() => nav("site-learning")}>Explore</button>
+          <button type="button" className="mw-btn mw-btn--ink mw-btn--sm mw-pill" onClick={() => nav("pathways")}>Start</button>
         </div>
         <button type="button" className="mw-burger" onClick={() => setOpen((o) => !o)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
           <Icon name={open ? "close" : "menu"} s={20} />
@@ -59,7 +60,8 @@ export function SiteHeader({ go, active }) {
             ))}
             <div className="mw-mobile-cta">
               <button type="button" className="mw-btn mw-btn--quiet mw-btn--lg mw-pill" onClick={() => nav("login")}>Sign in</button>
-              <button type="button" className="mw-btn mw-btn--ink mw-btn--lg mw-pill" onClick={() => nav("join")}>Get started</button>
+              <button type="button" className="mw-btn mw-btn--ghost mw-btn--lg mw-pill" onClick={() => nav("site-learning")}>Explore</button>
+              <button type="button" className="mw-btn mw-btn--ink mw-btn--lg mw-pill" onClick={() => nav("pathways")}>Start</button>
             </div>
           </nav>
         </div>

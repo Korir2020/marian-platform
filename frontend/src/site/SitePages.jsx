@@ -62,7 +62,8 @@ export function SiteHome({ go }) {
           </p>
           <div className="mw-hero-cta mw-fade" style={{ animationDelay: "240ms" }}>
             <Btn v="school" onClick={() => go("site-school")}><Icon name="building" /> Explore School Management</Btn>
-            <Btn v="learn" onClick={() => go("site-learning")}><Icon name="brain" /> Start Personalized Learning</Btn>
+            <Btn v="learn" onClick={() => go("pathways")}><Icon name="brain" /> Start Personalized Learning</Btn>
+            <Btn v="quiet" onClick={() => go("site-learning")}>Explore courses</Btn>
           </div>
         </div>
       </section>
