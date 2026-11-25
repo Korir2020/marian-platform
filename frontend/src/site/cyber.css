@@ -34,3 +34,6 @@
 .cy-card{display:flex;flex-direction:column;gap:6px;width:100%;text-align:left;margin-top:12px;background:#0b1a1f;color:#e6f2f0;border:1px solid #2ec4a6;border-radius:16px;padding:16px;font:inherit;line-height:1.4;cursor:pointer}
 .cy-card span{font-size:11px;letter-spacing:.1em;color:#7fe0cb}
 .cy-card b{font-family:Fraunces,serif;font-size:20px;color:#fff}
+button.cy-card.cy-card{background:#0b1a1f !important;color:#e6f2f0 !important;border:1px solid #2ec4a6 !important;border-radius:16px;padding:16px !important}
+button.cy-card.cy-card b{color:#ffffff !important;font-family:Fraunces,serif}
+button.cy-card.cy-card span{color:#7fe0cb !important}
