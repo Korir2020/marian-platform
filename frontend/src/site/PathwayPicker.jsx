@@ -27,11 +27,21 @@ const S = {
   label: { fontSize: '0.75rem', fontWeight: 600, margin: '0 0 0.5rem', opacity: 0.8 },
 };
 
+const TECH = 'Technology, Coding & AI';
+const COURSES = [
+  ['Python', 'site-pathway-python'],
+  ['JavaScript', 'site-pathway-javascript'],
+  ['Software Development', 'site-pathway-software-development'],
+  ['Web Development', 'site-pathway-web-development'],
+  ['Cybersecurity', 'site-cybersecurity'],
+];
+
 export default function PathwayPicker({ go, onContinue }) {
   const [q, setQ] = useState('');
   const t = q.trim().toLowerCase();
   const showCbc = !t || 'cbc kenya competency-based curriculum'.includes(t);
-  const list = others.filter((n) => n.toLowerCase().includes(t));
+  const list = others.filter((n) => n !== TECH && n.toLowerCase().includes(t));
+  const showTech = !t || (TECH + ' python javascript software web development cybersecurity').toLowerCase().includes(t);
   return (
     <PageShell go={go} active="site-learning">
       <div style={S.wrap}>
@@ -58,7 +68,18 @@ export default function PathwayPicker({ go, onContinue }) {
             </button>
           </div>
         )}
-        {list.length > 0 && <p style={S.label}>More pathways</p>}
+        {showTech && (
+          <div style={S.card}>
+            <div style={S.cardT}>{TECH}</div>
+            <div style={S.cardD}>Pick a course to explore</div>
+            <div style={S.chips}>
+              {COURSES.map(([label, scr]) => (
+                <button key={scr} type="button" style={{ ...S.chip, background: 'transparent', color: 'inherit', cursor: 'pointer' }} onClick={() => go(scr)}>{label}</button>
+              ))}
+            </div>
+          </div>
+        )}
+  {list.length > 0 && <p style={S.label}>More pathways</p>}
         <div style={S.grid}>
           {list.map((n) => (
             <div key={n} style={S.tile}>
