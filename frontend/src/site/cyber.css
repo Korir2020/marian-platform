@@ -93,3 +93,10 @@ button.cy-card.cy-card span{color:#7fe0cb !important;font-size:11px;letter-spaci
   .cy-wrap.cy-wrap{padding:0 20px !important}
   .cy-wrap .cy-main{max-width:768px !important;margin:0 auto 40px !important;border-radius:24px !important}
 }
+
+/* Full width on every screen size */
+@media (min-width:640px){
+  .cy-wrap.cy-wrap{padding:0 !important;margin:0 !important}
+  .cy-wrap .cy-main{max-width:none !important;width:100% !important;margin:0 !important;border-radius:24px 24px 0 0 !important}
+}
+.cy-wrap .cy-in{max-width:960px;margin:0 auto}
