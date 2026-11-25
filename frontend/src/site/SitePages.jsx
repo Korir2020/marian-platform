@@ -2,6 +2,7 @@ import { Icon } from "./icons";
 import { PageShell } from "./SiteChrome";
 import schoolImg from "./assets/school-management.jpg";
 import learnImg from "./assets/personalized-learning.jpg";
+import { PathwayCards } from "./PathwayPage";
 
 function Btn({ v, size = "xl", className = "", onClick, children }) {
   return (
@@ -239,6 +240,14 @@ export function SiteLearning({ go }) {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="mw-container mw-block">
+        <div className="mw-block-head">
+          <p className="mw-eyebrow mw-c-learn">New pathways</p>
+          <h2 className="mw-h2">Python, JavaScript, Software and Web</h2>
+        </div>
+        <PathwayCards go={go} />
       </section>
 
       <section className="mw-how">
