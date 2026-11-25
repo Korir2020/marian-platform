@@ -1,0 +1,36 @@
+.cy{background:#0b1a1f;color:#e6f2f0;min-height:60vh;font-family:Figtree,sans-serif}
+.cy-in{max-width:860px;margin:0 auto;padding:40px 18px 60px}
+.cy-back{background:none;border:0;color:#7fe0cb;font:inherit;padding:0 0 14px;cursor:pointer}
+.cy-eyebrow,.cy-meta{font-size:12px;letter-spacing:.08em;color:#7fe0cb}
+.cy-title{font-family:Fraunces,serif;font-size:32px;line-height:1.15;margin:8px 0}
+.cy-title em{color:#2ec4a6;font-style:italic}
+.cy-sub{color:#b8cfcb;margin:0 0 18px}
+.cy-tabs,.cy-steps{display:flex;gap:8px;overflow-x:auto;margin:14px 0}
+.cy-tab,.cy-step{background:#13292f;color:#e6f2f0;border:1px solid #24424a;border-radius:999px;padding:9px 16px;font:inherit;cursor:pointer;flex:none}
+.cy-tab.on,.cy-step.on{background:#2ec4a6;color:#06201b;border-color:#2ec4a6;font-weight:700}
+.cy-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 18px}
+.cy-stats div{background:#13292f;border-radius:14px;padding:14px;display:flex;flex-direction:column}
+.cy-stats b{font-family:Fraunces,serif;font-size:30px;color:#2ec4a6}
+.cy-stats span{color:#b8cfcb;font-size:13px}
+.cy-h2{font-family:Fraunces,serif;font-size:21px;margin:22px 0 10px}
+.cy-cycle{display:flex;flex-wrap:wrap;gap:8px}
+.cy-cycle span,.cy-tags span{background:#13292f;border:1px solid #24424a;border-radius:999px;padding:6px 12px;font-size:13px}
+.cy-tags{display:flex;flex-wrap:wrap;gap:8px}
+.cy-stage-list{display:grid;gap:10px}
+.cy-stage{display:flex;gap:12px;text-align:left;background:#13292f;color:inherit;border:1px solid #24424a;border-radius:14px;padding:14px;font:inherit;cursor:pointer}
+.cy-num{font-family:Fraunces,serif;font-size:22px;color:#2ec4a6;flex:none}
+.cy-stage-main{display:flex;flex-direction:column;gap:4px}
+.cy-stage-main small,.cy-lesson p{color:#b8cfcb;font-size:14px;margin:0}
+.cy-safe{background:#16352f;border-left:4px solid #2ec4a6;border-radius:10px;padding:12px 14px;margin:18px 0;font-size:14px}
+.cy-banner{background:#13292f;border-radius:16px;padding:18px;margin:6px 0 14px}
+.cy-banner h2{font-family:Fraunces,serif;margin:6px 0}
+.cy-banner p{color:#b8cfcb;margin:0}
+.cy-module{background:#13292f;border:1px solid #24424a;border-radius:14px;margin:10px 0;padding:4px 14px}
+.cy-module summary{display:flex;gap:10px;align-items:center;padding:12px 0;cursor:pointer}
+.cy-module summary small{margin-left:auto;color:#b8cfcb}
+.cy-lesson{border-top:1px solid #24424a;padding:12px 0;display:flex;flex-direction:column;gap:4px}
+.cy-list{padding-left:20px;color:#d3e4e1;line-height:1.5}
+.cy-arch{color:#b8cfcb;line-height:1.5}
+.cy-card{display:flex;flex-direction:column;gap:6px;width:100%;text-align:left;margin-top:12px;background:#0b1a1f;color:#e6f2f0;border:1px solid #2ec4a6;border-radius:16px;padding:16px;font:inherit;line-height:1.4;cursor:pointer}
+.cy-card span{font-size:11px;letter-spacing:.1em;color:#7fe0cb}
+.cy-card b{font-family:Fraunces,serif;font-size:20px;color:#fff}

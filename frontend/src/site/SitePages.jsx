@@ -248,6 +248,11 @@ export function SiteLearning({ go }) {
           <h2 className="mw-h2">Python, JavaScript, Software and Web</h2>
         </div>
         <PathwayCards go={go} />
+        <button type="button" className="cy-card" onClick={() => go('site-cybersecurity')}>
+          <span>NEW</span>
+          <b>Cybersecurity Academy</b>
+          Eight stages from foundations to specialization, with safe lab practice.
+        </button>
       </section>
 
       <section className="mw-how">

@@ -13,6 +13,7 @@ import { OfflineUnlock } from "./offline/OfflineComponents";
 import { clearOfflineData } from "./offline/offlineStore";
 import { SiteHome, SiteSchool, SiteLearning } from "./site/SitePages";
 import PathwayPage from "./site/PathwayPage";
+import CyberAcademyPage from "./site/CyberAcademyPage";
 import "./app.css";
 import "./light.css";
 
@@ -54,6 +55,7 @@ export default function App() {
   if (scr === "landing") return <SiteHome go={setScr} />;
   if (scr === "site-home") return <SiteHome go={setScr} />;
   if (scr === "site-school") return <SiteSchool go={setScr} />;
+  if (scr === "site-cybersecurity") return <CyberAcademyPage key={scr} go={setScr} />;
   if (typeof scr === "string" && scr.startsWith("site-pathway-")) return <PathwayPage key={scr} go={setScr} slug={scr.slice(13)} />;
   if (scr === "site-learning") return <SiteLearning go={setScr} />;
   if (scr === "login") return <Login onDone={() => { if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search); setOk(true); }} onForgot={to("recovery")} onBack={to("landing")} onJoin={to("join")} onRegister={to("school-register")} />;
