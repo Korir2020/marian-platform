@@ -1,0 +1,174 @@
+{
+  "status": "draft",
+  "key": "cybersecurity",
+  "title": "Welcome to Cybersecurity",
+  "course_title": "Stage 1 — Digital & IT Foundations",
+  "level": "beginner",
+  "learning_outcomes": [
+    "Demonstrate core competence across computer systems and troubleshooting.",
+    "Perform authorized hands-on work and preserve technical evidence.",
+    "Explain decisions using security, operational and risk concepts.",
+    "Produce professional documentation and complete practical assessments.",
+    "Reflect on limitations and identify the next competency to develop."
+  ],
+  "module_titles": [
+    "Computer systems and troubleshooting",
+    "Operating systems and filesystems",
+    "Command line and Python foundations",
+    "Technical troubleshooting practice"
+  ],
+  "sections": [
+    {
+      "heading": "What is Cybersecurity?",
+      "body": "Cybersecurity is the practice of protecting computers, accounts, networks, and information from damage, misuse, or unauthorised access. Think of it like securing a home: you understand what needs protection, check doors and windows, use suitable locks, and respond carefully when something seems wrong."
+    },
+    {
+      "heading": "Why is it useful?",
+      "body": "Cybersecurity helps protect mobile-money accounts, school records, small-business information, online services, and personal devices. It also helps organisations in Kenya and across Africa reduce the risk of data loss, fraud, service disruption, and privacy breaches."
+    },
+    {
+      "heading": "What can you build or do with it?",
+      "body": "This programme begins with computer systems, troubleshooting, operating systems, and safe technical practice before moving into more specialised security skills. You will learn to inspect systems, explain risks, carry out controlled practical tasks, and document evidence; later stages build on these foundations."
+    },
+    {
+      "heading": "How to use these lessons",
+      "body": "Read the safety scope and explanation before touching a tool or system, predict what you expect to observe, and then perform only the authorised activity. Use the knowledge checks and practical activities to test your understanding, record evidence, and explain your decisions; stop if a task goes beyond its stated scope."
+    },
+    {
+      "heading": "What you need",
+      "body": "No previous cybersecurity experience is required to begin, but you should be ready to follow instructions carefully and use an approved computer. Marian's isolated labs or explicitly approved virtual machines are used for practical work; internet may be needed for learning resources, but practical exercises must stay within the authorised lab environment. Cybersecurity skills are for legal, ethical and authorised use only: practise on your own devices, designated training labs, or systems for which you have clear written permission."
+    }
+  ],
+  "terms": [
+    {
+      "term": "Cybersecurity",
+      "meaning": "The practice of protecting systems and information from misuse, damage, or unauthorised access.",
+      "example": "Protecting a school computer account.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use cybersecurity as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use cybersecurity when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding cybersecurity helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Protecting a school computer account.",
+      "example_explanation": "This example shows cybersecurity in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Computer system",
+      "meaning": "A computer and the hardware and software working together to perform tasks.",
+      "example": "A laptop running an operating system.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use computer system as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use computer system when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding computer system helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A laptop running an operating system.",
+      "example_explanation": "This example shows computer system in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Hardware",
+      "meaning": "The physical parts of a computer that can be touched.",
+      "example": "Keyboard, memory, and storage drive.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use hardware as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use hardware when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding hardware helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Keyboard, memory, and storage drive.",
+      "example_explanation": "This example shows hardware in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Software",
+      "meaning": "Programs and instructions that tell a computer what to do.",
+      "example": "An operating system.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use software as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use software when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding software helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "An operating system.",
+      "example_explanation": "This example shows software in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Firmware",
+      "meaning": "Software stored in a device that helps control its basic operation.",
+      "example": "Firmware that starts a device.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use firmware as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use firmware when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding firmware helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Firmware that starts a device.",
+      "example_explanation": "This example shows firmware in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Boot process",
+      "meaning": "The steps a computer follows when it starts.",
+      "example": "The computer checks hardware and loads its operating system.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use boot process as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use boot process when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding boot process helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "The computer checks hardware and loads its operating system.",
+      "example_explanation": "This example shows boot process in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Operating system",
+      "meaning": "The main software that manages a computer's hardware and applications.",
+      "example": "Windows or Linux.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use operating system as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use operating system when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding operating system helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Windows or Linux.",
+      "example_explanation": "This example shows operating system in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Storage",
+      "meaning": "A place where a computer keeps information for later use.",
+      "example": "A solid-state drive.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use storage as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use storage when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding storage helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A solid-state drive.",
+      "example_explanation": "This example shows storage in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Memory",
+      "meaning": "A computer resource used to hold information while work is being done.",
+      "example": "RAM holding open application data.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use memory as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use memory when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding memory helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "RAM holding open application data.",
+      "example_explanation": "This example shows memory in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Peripheral",
+      "meaning": "A device connected to a computer to provide input, output, or extra functions.",
+      "example": "A printer or mouse.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use peripheral as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use peripheral when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding peripheral helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A printer or mouse.",
+      "example_explanation": "This example shows peripheral in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Troubleshooting",
+      "meaning": "A step-by-step process for finding the cause of a technical problem.",
+      "example": "Check power, connections, and error messages.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use troubleshooting as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use troubleshooting when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding troubleshooting helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Check power, connections, and error messages.",
+      "example_explanation": "This example shows troubleshooting in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "File system",
+      "meaning": "The way an operating system organises and names files and folders.",
+      "example": "A folder containing lesson documents.",
+      "how_used": "In Stage 1 — Digital & IT Foundations, you use file system as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use file system when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding file system helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A folder containing lesson documents.",
+      "example_explanation": "This example shows file system in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Permission",
+      "meaning": "A rule that determines what a user or process is allowed to access or change.",
+      "example": "A user can read but not edit a file.",
+      "how_used": "Operating systems use permissions to control files, devices, and other resources.",
+      "when_to_use": "When deciding who or what should have access to a resource.",
+      "why_it_matters": "Least privilege reduces the damage caused by mistakes or compromised accounts.",
+      "practical_example": "A lab folder is readable by learners but writable only by the lab service.",
+      "example_explanation": "Different permissions give each role only the access it needs."
+    }
+  ]
+}

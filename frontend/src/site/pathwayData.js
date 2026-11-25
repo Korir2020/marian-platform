@@ -1,4 +1,5 @@
-export const additionalPathways = [
+import { extraPathways } from "./extraPathways";
+const basePathways = [
   {
     "slug": "python",
     "title": "Python",
@@ -592,3 +593,4 @@ export const additionalPathways = [
     ]
   }
 ];
+export const additionalPathways = [...basePathways, ...extraPathways];

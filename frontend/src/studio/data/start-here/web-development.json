@@ -1,0 +1,173 @@
+{
+  "status": "draft",
+  "key": "web-development",
+  "title": "Welcome to Web Development",
+  "course_title": "Web Development — Beginner",
+  "level": "beginner",
+  "learning_outcomes": [
+    "Structure meaningful pages with semantic HTML.",
+    "Style responsive layouts with CSS, typography and accessible visual states.",
+    "Use JavaScript fundamentals and DOM events to add useful interactions.",
+    "Publish and evaluate a small accessible website."
+  ],
+  "module_titles": [
+    "HTML foundations and semantic structure",
+    "CSS styling and responsive layout",
+    "JavaScript for interactive pages",
+    "Build, test and publish a website"
+  ],
+  "sections": [
+    {
+      "heading": "What is Web Development?",
+      "body": "Web development is the work of creating websites and web applications that people use in a browser. Think of a website like a shop: HTML gives it a structure, CSS arranges and decorates it, and JavaScript can make parts respond to visitors."
+    },
+    {
+      "heading": "Why is it useful?",
+      "body": "Websites help schools share information, small businesses display products, farmers reach customers, and community groups provide services. Web applications can also support tasks such as enquiries, learning, bookings, and online payments, including services used in Kenya and across Africa."
+    },
+    {
+      "heading": "What can you build or do with it?",
+      "body": "You will create meaningful page structures with HTML, style them with CSS, make layouts work on different screen sizes, and add useful interactions with JavaScript. By the end, you will publish and evaluate a small website with attention to accessibility."
+    },
+    {
+      "heading": "How to use these lessons",
+      "body": "Read each explanation, predict how a page or code example will appear or behave, and then try it in your own files. Complete the knowledge checks and activities, and test your pages on narrow and wide screens as well as with a keyboard."
+    },
+    {
+      "heading": "What you need",
+      "body": "Basic computer skills are helpful, but no previous programming experience is required. You need a computer, a modern web browser, and a text or code editor; internet is needed to access online lessons and publish a site, but you can practise many activities offline."
+    }
+  ],
+  "terms": [
+    {
+      "term": "Website",
+      "meaning": "A group of related web pages available under one web address.",
+      "example": "A school website.",
+      "how_used": "In Web Development, you use website as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use website when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding website helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A school website.",
+      "example_explanation": "This example shows website in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Web page",
+      "meaning": "One document that a browser displays.",
+      "example": "A school's contact page.",
+      "how_used": "In Web Development, you use web page as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use web page when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding web page helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A school's contact page.",
+      "example_explanation": "This example shows web page in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Browser",
+      "meaning": "An application used to open and interact with websites.",
+      "example": "A browser displaying a timetable.",
+      "how_used": "In Web Development, you use browser as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use browser when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding browser helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A browser displaying a timetable.",
+      "example_explanation": "This example shows browser in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "HTML",
+      "meaning": "The markup language used to structure content on web pages.",
+      "example": "<h1>Welcome</h1>",
+      "how_used": "HTML elements describe headings, paragraphs, links, forms, images, and other content.",
+      "when_to_use": "When creating the structure and meaning of a web page.",
+      "why_it_matters": "Browsers and assistive technologies rely on good HTML structure.",
+      "practical_example": "<h1>School Library</h1>\\n<p>Find a book.</p>",
+      "example_explanation": "The heading and paragraph create meaningful page content."
+    },
+    {
+      "term": "Element",
+      "meaning": "A part of an HTML page, usually made from a tag and its content.",
+      "example": "A heading element.",
+      "how_used": "In Web Development, you use element as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use element when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding element helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A heading element.",
+      "example_explanation": "This example shows element in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Tag",
+      "meaning": "A marker in HTML that identifies an element.",
+      "example": "<p>",
+      "how_used": "In Web Development, you use tag as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use tag when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding tag helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "<p>",
+      "example_explanation": "This example shows tag in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Attribute",
+      "meaning": "Extra information written in an opening HTML tag.",
+      "example": "alt=\"School logo\"",
+      "how_used": "In Web Development, you use attribute as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use attribute when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding attribute helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "alt=\"School logo\"",
+      "example_explanation": "This example shows attribute in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Semantic HTML",
+      "meaning": "HTML that uses elements according to the meaning of the content.",
+      "example": "<nav> for navigation links.",
+      "how_used": "In Web Development, you use semantic html as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use semantic html when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding semantic html helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "<nav> for navigation links.",
+      "example_explanation": "This example shows semantic html in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "CSS",
+      "meaning": "The language used to control how web page content looks and is arranged.",
+      "example": "color: navy;",
+      "how_used": "In Web Development, you use css as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use css when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding css helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "color: navy;",
+      "example_explanation": "This example shows css in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Selector",
+      "meaning": "A CSS pattern that chooses which elements receive a style.",
+      "example": "h1",
+      "how_used": "In Web Development, you use selector as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use selector when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding selector helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "h1",
+      "example_explanation": "This example shows selector in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Responsive layout",
+      "meaning": "A page layout that adjusts to different screen sizes.",
+      "example": "A menu that fits a phone screen.",
+      "how_used": "In Web Development, you use responsive layout as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use responsive layout when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding responsive layout helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A menu that fits a phone screen.",
+      "example_explanation": "This example shows responsive layout in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "JavaScript",
+      "meaning": "A programming language that can add behaviour to a web page.",
+      "example": "A button that opens a message.",
+      "how_used": "In Web Development, you use javascript as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use javascript when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding javascript helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A button that opens a message.",
+      "example_explanation": "This example shows javascript in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "DOM",
+      "meaning": "The browser's structured representation of a web page that scripts can read and change.",
+      "example": "Changing a heading after a button click.",
+      "how_used": "In Web Development, you use dom as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use dom when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding dom helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Changing a heading after a button click.",
+      "example_explanation": "This example shows dom in a small, concrete situation. Try changing one part and observe what happens."
+    }
+  ]
+}

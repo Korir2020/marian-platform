@@ -14,6 +14,7 @@ import PathwayPicker from "./site/PathwayPicker";
 import LevelPicker from "./site/LevelPicker";
 import LearnerSignup from "./site/LearnerSignup";
 import PaymentGate from "./site/PaymentGate";
+import LessonViewer from "./site/LessonViewer";
 import { clearOfflineData } from "./offline/offlineStore";
 import { SiteHome, SiteSchool, SiteLearning } from "./site/SitePages";
 import PathwayPage from "./site/PathwayPage";
@@ -47,7 +48,8 @@ export default function App() {
   const to = (x) => () => setScr(x);
 const [level, setLevel] = useState(null);
 const [gateBack, setGateBack] = useState('site-learning');
-const gateGo = (x) => (x === 'pathways' || x === 'payment-gate') ? (setGateBack(scr), setScr('payment-gate')) : setScr(x);
+const ownerPass = () => { try { if (!import.meta.env.DEV) return false; const q = new URLSearchParams(window.location.search).get('owner'); if (q === '1') localStorage.setItem('marian_owner_preview', '1'); if (q === '0') localStorage.removeItem('marian_owner_preview'); return localStorage.getItem('marian_owner_preview') === '1'; } catch (e) { return false; } };
+const gateGo = (x) => ((x === 'pathways' || x === 'payment-gate') && !ownerPass()) ? (setGateBack(scr), setScr('payment-gate')) : setScr(x === 'payment-gate' ? 'pathways' : x);
   useEffect(() => {
     if (!historyBooted) { historyBooted = true; window.history.replaceState({ scr }, ""); return; }
     if (!window.history.state || window.history.state.scr !== scr) window.history.pushState({ scr }, "");
@@ -74,6 +76,7 @@ const gateGo = (x) => (x === 'pathways' || x === 'payment-gate') ? (setGateBack(
   if (scr === "site-home") return <SiteHome go={setScr} />;
   if (scr === "site-school") return <SiteSchool go={setScr} />;
   if (scr === "site-cybersecurity") return <CyberAcademyPage key={scr} go={gateGo} />;
+  if (typeof scr === "string" && scr.startsWith("lessons:")) return <LessonViewer key={scr} scr={scr} go={setScr} />;
   if (typeof scr === "string" && scr.startsWith("site-pathway-")) return <PathwayPage key={scr} go={gateGo} slug={scr.slice(13)} />;
   if (scr === "site-learning") return <SiteLearning go={setScr} />;
   if (scr === "login") return <Login onDone={() => { if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search); setOk(true); }} onForgot={to("recovery")} onBack={to("landing")} onJoin={to("join")} onRegister={to("school-register")} />;

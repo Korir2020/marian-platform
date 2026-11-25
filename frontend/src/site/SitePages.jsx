@@ -254,6 +254,11 @@ export function SiteLearning({ go }) {
           <b>Cybersecurity Academy</b>
           Eight stages from foundations to specialization, with safe lab practice.
         </button>
+        <button type='button' className='cy-card' onClick={() => { window.location.href = '/studio.html'; }}>
+          <span>NEW</span>
+          <b>Marian Studio</b>
+          Practice lab, knowledge hub, creative studio and language pathways.
+        </button>
       </section>
 
       <section className="mw-how">

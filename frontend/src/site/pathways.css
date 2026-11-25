@@ -24,3 +24,5 @@
 .pw-card{display:block;width:100%;text-align:left;background:#fff;border:1px solid rgba(0,0,0,.08);border-top:5px solid var(--pw-accent);border-radius:14px;padding:16px;cursor:pointer;font-family:var(--font-sans);color:inherit}
 .pw-card b{display:block;font-family:var(--font-display);font-size:1.1rem;margin:8px 0 4px}
 @media(max-width:600px){.pw-title{font-size:1.75rem}.pw-hero{padding:40px 0 32px}}
+.pw-theme-css{--pw-accent:#c2417f;--pw-accent2:#f5a3c7;--pw-hero:#3a1128;--pw-tint:#fdeef5}
+.pw-theme-html{--pw-accent:#0f766e;--pw-accent2:#5eead4;--pw-hero:#0b2e2b;--pw-tint:#ecfdf9}

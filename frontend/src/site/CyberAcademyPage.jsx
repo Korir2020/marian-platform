@@ -111,6 +111,7 @@ export default function CyberAcademyPage({ go }) {
                   })}
                 </ol>
                 <button type="button" className="mw-btn mw-btn--learn mw-btn--sm" style={{ marginTop: 16 }} onClick={() => go('payment-gate')}>Start the Academy</button>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>{stages.map((s, i) => <button key={s.number} type="button" className="mw-btn mw-btn--ghost mw-btn--sm" onClick={() => go('lessons:cyber:' + (i + 1))}>Read stage {i + 1}</button>)}</div>
               </>
             )}
 
