@@ -70,6 +70,7 @@ export default function PathwayPage({ go, slug }) {
               </details>
             ))}
             <p className="pw-cap">Preview of a draft course outline. Publishing, enrolment and progress tracking are not available yet.</p>
+            <button type="button" className="pw-card" style={{ width: 'auto', marginTop: 16, marginRight: 12 }} onClick={() => go('pathways')}>Start this course</button>
             <button type="button" className="pw-card" style={{ width: "auto", marginTop: 16 }} onClick={() => go("site-learning")}>Back to learning</button>
           </div>
         </section>
