@@ -1,0 +1,30 @@
+.pg-backdrop{position:fixed;inset:0;z-index:1000;display:flex;align-items:flex-end;justify-content:center;background:rgba(10,14,20,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:pgFade .3s ease both}
+.pg-backdrop.pg-out{animation:pgFadeOut .26s ease both}
+.pg-modal{position:relative;width:100%;max-width:440px;max-height:92vh;overflow:auto;background:Canvas;color:CanvasText;border-radius:22px 22px 0 0;padding:1.25rem 1.125rem calc(1.5rem + env(safe-area-inset-bottom,0px));box-shadow:0 -12px 48px rgba(0,0,0,.35);animation:pgRise .5s cubic-bezier(.16,1,.3,1) both}
+.pg-out .pg-modal{animation:pgSink .26s cubic-bezier(.4,0,1,1) both}
+@media (min-width:600px){.pg-backdrop{align-items:center}.pg-modal{border-radius:22px;max-height:88vh}}
+.pg-grab{width:42px;height:4px;border-radius:9999px;background:currentColor;opacity:.2;margin:0 auto .875rem}
+.pg-x{position:absolute;top:.75rem;right:.75rem;width:34px;height:34px;border-radius:9999px;border:none;background:color-mix(in oklab,currentColor 10%,transparent);color:inherit;font-size:1.125rem;cursor:pointer;transition:transform .2s ease,background .2s ease}
+.pg-x:hover{transform:rotate(90deg);background:color-mix(in oklab,currentColor 18%,transparent)}
+.pg-item{opacity:0;animation:pgItem .5s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*70ms + 120ms)}
+.pg-h{font-family:Fraunces,serif;font-size:1.375rem;margin:.25rem 0}
+.pg-sub{font-size:.8125rem;opacity:.75;margin:0 0 .875rem}
+.pg-price{position:relative;overflow:hidden;border:1.5px solid var(--learn,#2f7d6d);background:var(--learn-soft,rgba(47,125,109,.1));border-radius:14px;padding:.875rem;margin-bottom:.875rem}
+.pg-price::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);animation:pgSweep 3.2s ease-in-out 1s infinite}
+.pg-amt{font-family:Fraunces,serif;font-size:1.375rem;font-weight:600}
+.pg-m{position:relative;display:flex;align-items:center;gap:.625rem;width:100%;text-align:left;padding:.75rem;margin-bottom:.5rem;border-radius:12px;border:1px solid color-mix(in oklab,currentColor 16%,transparent);background:transparent;color:inherit;cursor:pointer;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.pg-m:active{transform:scale(.98)}
+.pg-m.on{border:1.5px solid var(--learn,#2f7d6d);background:var(--learn-soft,rgba(47,125,109,.1))}
+.pg-m.on::after{content:"";position:absolute;inset:-4px;border-radius:15px;border:2px solid var(--learn,#2f7d6d);opacity:0;animation:pgRing .9s ease-out}
+.pg-dot{width:18px;height:18px;border-radius:9999px;border:2px solid currentColor;opacity:.4;flex:none;transition:all .2s ease}
+.pg-m.on .pg-dot{opacity:1;border-color:var(--learn,#2f7d6d);background:radial-gradient(circle,var(--learn,#2f7d6d) 45%,transparent 50%)}
+.pg-pay{width:100%;padding:.8rem;border-radius:12px;border:none;font-weight:600;background:var(--learn,#2f7d6d);color:#fff;opacity:.45;cursor:not-allowed}
+.pg-note{font-size:.75rem;opacity:.7;text-align:center;margin:.625rem 0 0}
+@keyframes pgFade{from{opacity:0}to{opacity:1}}
+@keyframes pgFadeOut{from{opacity:1}to{opacity:0}}
+@keyframes pgRise{from{opacity:0;transform:translateY(60px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes pgSink{from{opacity:1;transform:none}to{opacity:0;transform:translateY(40px) scale(.97)}}
+@keyframes pgItem{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pgSweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+@keyframes pgRing{0%{opacity:.8;transform:scale(.97)}100%{opacity:0;transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.pg-backdrop,.pg-modal,.pg-item,.pg-price::after,.pg-m.on::after{animation:none!important;opacity:1}.pg-item{opacity:1}}

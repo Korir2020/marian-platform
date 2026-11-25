@@ -10,13 +10,22 @@ import SchoolRegistration from "./SchoolRegistration";
 import SchoolStatus from "./SchoolStatus";
 import IndependentLearningStatus from "./IndependentLearningStatus";
 import { OfflineUnlock } from "./offline/OfflineComponents";
+import PathwayPicker from "./site/PathwayPicker";
+import LevelPicker from "./site/LevelPicker";
+import LearnerSignup from "./site/LearnerSignup";
+import PaymentGate from "./site/PaymentGate";
+import LessonViewer from "./site/LessonViewer";
 import { clearOfflineData } from "./offline/offlineStore";
 import { SiteHome, SiteSchool, SiteLearning } from "./site/SitePages";
+import PathwayPage from "./site/PathwayPage";
+import CyberAcademyPage from "./site/CyberAcademyPage";
 import "./app.css";
 import "./light.css";
 
 // Signed-in dashboards load on demand so the landing page stays small.
 const Dash = lazy(() => import("./Dash"));
+
+let historyBooted = false;
 
 export default function App() {
   const [ok, setOk] = useState(!!localStorage.getItem("in"));
@@ -37,6 +46,19 @@ export default function App() {
     return () => window.removeEventListener("marian:suspended", h);
   }, []);
   const to = (x) => () => setScr(x);
+const [level, setLevel] = useState(null);
+const [gateBack, setGateBack] = useState('site-learning');
+const ownerPass = () => { try { if (!import.meta.env.DEV) return false; const q = new URLSearchParams(window.location.search).get('owner'); if (q === '1') localStorage.setItem('marian_owner_preview', '1'); if (q === '0') localStorage.removeItem('marian_owner_preview'); return localStorage.getItem('marian_owner_preview') === '1'; } catch (e) { return false; } };
+const gateGo = (x) => ((x === 'pathways' || x === 'payment-gate') && !ownerPass()) ? (setGateBack(scr), setScr('payment-gate')) : setScr(x === 'payment-gate' ? 'pathways' : x);
+  useEffect(() => {
+    if (!historyBooted) { historyBooted = true; window.history.replaceState({ scr }, ""); return; }
+    if (!window.history.state || window.history.state.scr !== scr) window.history.pushState({ scr }, "");
+  }, [scr]);
+  useEffect(() => {
+    const onPop = (e) => { if (e.state && e.state.scr) setScr(e.state.scr); };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
   if (offlineRequired && !offlineSession) return <OfflineUnlock onUnlock={(payload, passphrase) => { setOfflineSession({ payload, passphrase }); setOfflineRequired(false); }} onForget={forgetDevice} />;
   if (blocked) return (
     <div role="alert" style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
@@ -53,9 +75,16 @@ export default function App() {
   if (scr === "landing") return <SiteHome go={setScr} />;
   if (scr === "site-home") return <SiteHome go={setScr} />;
   if (scr === "site-school") return <SiteSchool go={setScr} />;
+  if (scr === "site-cybersecurity") return <CyberAcademyPage key={scr} go={gateGo} />;
+  if (typeof scr === "string" && scr.startsWith("lessons:")) return <LessonViewer key={scr} scr={scr} go={setScr} />;
+  if (typeof scr === "string" && scr.startsWith("site-pathway-")) return <PathwayPage key={scr} go={gateGo} slug={scr.slice(13)} />;
   if (scr === "site-learning") return <SiteLearning go={setScr} />;
   if (scr === "login") return <Login onDone={() => { if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search); setOk(true); }} onForgot={to("recovery")} onBack={to("landing")} onJoin={to("join")} onRegister={to("school-register")} />;
   if (scr === "recovery") return <PasswordRecovery onBack={to("login")} />;
+  if (scr === "pathways") return <PathwayPicker go={setScr} onContinue={to("levels")} />;
+if (scr === "levels") return <LevelPicker go={setScr} level={level} onContinue={(l) => { setLevel(l); setScr("learner-signup"); }} />;
+if (scr === "learner-signup") return <LearnerSignup go={setScr} onSignIn={to("login")} />;
+if (scr === "payment-gate") return <PaymentGate go={setScr} back={gateBack} />;
   if (scr === "join") {
     return <Join onBack={to("landing")} onSignIn={to("login")} />;
   }

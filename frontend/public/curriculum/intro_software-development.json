@@ -1,0 +1,174 @@
+{
+  "status": "draft",
+  "key": "software-development",
+  "title": "Welcome to Software Development",
+  "course_title": "Software Development — Beginner",
+  "level": "beginner",
+  "learning_outcomes": [
+    "Describe a software lifecycle and turn needs into testable requirements.",
+    "Decompose work into slices and design focused modules with clear interfaces.",
+    "Use version-control, review, testing, debugging, and documentation practices.",
+    "Build security, accessibility, privacy, and maintainability into development work.",
+    "Plan, release, and maintain a small software product honestly and safely."
+  ],
+  "module_titles": [
+    "Discover and define the work",
+    "Design and collaborate",
+    "Build quality into software",
+    "Deliver and sustain a product"
+  ],
+  "sections": [
+    {
+      "heading": "What is Software Development?",
+      "body": "Software development is the organised work of understanding a problem, planning a solution, building it, checking it, releasing it, and maintaining it. Think of it like planning and constructing a school building: people agree on what is needed, make a plan, build carefully, inspect the result, and look after it."
+    },
+    {
+      "heading": "Why is it useful?",
+      "body": "Software development helps create systems for school records, small-business stock, farm planning, public information, and everyday digital services. A disciplined process helps teams build tools that people can understand, trust, use safely, and improve over time."
+    },
+    {
+      "heading": "What can you build or do with it?",
+      "body": "You will learn to describe a need as clear requirements, divide work into manageable parts, design modules, and use version control, review, testing, debugging, and documentation. You will also consider security, accessibility, privacy, release, and maintenance while building a small software product."
+    },
+    {
+      "heading": "How to use these lessons",
+      "body": "Read the situation and explanation first, predict what a good solution should do, and then try the planning or coding activity. Use the knowledge checks to confirm key ideas and the activities to practise decisions; explain why you chose an approach instead of only recording that it worked."
+    },
+    {
+      "heading": "What you need",
+      "body": "You do not need professional software-development experience, but you should be able to read simple Python code and use a school-approved development environment. A computer is recommended; internet helps with collaboration and resources, while some planning, coding, and testing activities can be completed offline."
+    }
+  ],
+  "terms": [
+    {
+      "term": "Software",
+      "meaning": "A set of computer programs and related instructions used to perform tasks.",
+      "example": "A school attendance application.",
+      "how_used": "In Software Development, you use software as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use software when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding software helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A school attendance application.",
+      "example_explanation": "This example shows software in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Software development",
+      "meaning": "The organised process of creating, checking, releasing, and maintaining software.",
+      "example": "Building and improving a library tool.",
+      "how_used": "In Software Development, you use software development as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use software development when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding software development helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Building and improving a library tool.",
+      "example_explanation": "This example shows software development in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Lifecycle",
+      "meaning": "The stages a piece of software passes through from idea to ongoing support.",
+      "example": "Plan, build, test, release, maintain.",
+      "how_used": "In Software Development, you use lifecycle as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use lifecycle when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding lifecycle helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Plan, build, test, release, maintain.",
+      "example_explanation": "This example shows lifecycle in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Requirement",
+      "meaning": "A clear statement of something a software product must provide or support.",
+      "example": "A user can search for a book.",
+      "how_used": "Teams turn requirements into design decisions, tasks, and tests.",
+      "when_to_use": "Before implementation, so everyone agrees what should be built.",
+      "why_it_matters": "It prevents teams from building the wrong thing.",
+      "practical_example": "Requirement: A learner can reset a forgotten password.",
+      "example_explanation": "A test can later verify that the reset flow works."
+    },
+    {
+      "term": "Acceptance criterion",
+      "meaning": "A condition that must be met for a requirement to be considered complete.",
+      "example": "Search results show matching titles.",
+      "how_used": "In Software Development, you use acceptance criterion as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use acceptance criterion when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding acceptance criterion helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Search results show matching titles.",
+      "example_explanation": "This example shows acceptance criterion in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Stakeholder",
+      "meaning": "A person or group affected by a software project.",
+      "example": "A teacher who uses a school system.",
+      "how_used": "In Software Development, you use stakeholder as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use stakeholder when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding stakeholder helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A teacher who uses a school system.",
+      "example_explanation": "This example shows stakeholder in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Design",
+      "meaning": "A plan describing how parts of a solution will work together.",
+      "example": "A sketch of the screens and data flow.",
+      "how_used": "In Software Development, you use design as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use design when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding design helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A sketch of the screens and data flow.",
+      "example_explanation": "This example shows design in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Module",
+      "meaning": "A separate part of a program with a focused responsibility.",
+      "example": "A module that manages book records.",
+      "how_used": "In Software Development, you use module as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use module when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding module helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A module that manages book records.",
+      "example_explanation": "This example shows module in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Interface",
+      "meaning": "A defined way for two parts of a system or two people to interact.",
+      "example": "A function's inputs and outputs.",
+      "how_used": "In Software Development, you use interface as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use interface when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding interface helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A function's inputs and outputs.",
+      "example_explanation": "This example shows interface in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Version control",
+      "meaning": "A way to record and manage changes to files over time.",
+      "example": "Saving a named Git commit.",
+      "how_used": "In Software Development, you use version control as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use version control when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding version control helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Saving a named Git commit.",
+      "example_explanation": "This example shows version control in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Test",
+      "meaning": "A check that compares what software does with what it should do.",
+      "example": "Check that a search finds a saved title.",
+      "how_used": "In Software Development, you use test as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use test when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding test helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Check that a search finds a saved title.",
+      "example_explanation": "This example shows test in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Debugging",
+      "meaning": "The process of finding and correcting the cause of a problem in software.",
+      "example": "Tracing why a total is incorrect.",
+      "how_used": "In Software Development, you use debugging as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use debugging when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding debugging helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Tracing why a total is incorrect.",
+      "example_explanation": "This example shows debugging in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Release",
+      "meaning": "Making a checked version of software available for use.",
+      "example": "Publishing version 1.0.",
+      "how_used": "In Software Development, you use release as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use release when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding release helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Publishing version 1.0.",
+      "example_explanation": "This example shows release in a small, concrete situation. Try changing one part and observe what happens."
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+  "manifest_version": 1,
+  "course_key": "html-intermediate",
+  "pathway": {
+    "key": "html",
+    "title": "HTML",
+    "slug": "html",
+    "description": "A complete standalone HTML course with practical lessons, examples, guided activities and assessment."
+  },
+  "course": {
+    "title": "HTML — Intermediate",
+    "level": "intermediate",
+    "programming_language": "HTML",
+    "minimum_runtime_version": "Modern evergreen browser",
+    "dependencies": "A modern browser; no framework required.",
+    "language": "English",
+    "short_description": "A complete standalone HTML course with practical lessons, examples, guided activities and assessment.",
+    "prerequisites": "Comfort with HTML fundamentals and the previous level.",
+    "estimated_guided_hours": 14,
+    "learning_outcomes": [
+      "Build correct, meaningful and accessible interfaces.",
+      "Apply the course concepts in practical projects.",
+      "Test, review and explain design decisions."
+    ]
+  },
+  "modules": [
+    {
+      "key": "m1",
+      "title": "Structured production",
+      "description": "Build maintainable HTML interfaces.",
+      "position": 1,
+      "topics": [
+        {
+          "key": "m1t1",
+          "title": "How HTML documents work",
+          "description": "HTML gives a browser a structured document. Start with doctype, html, head and body, then add meaningful elements inside the body. A document should communicate its purpose through headings, landmarks and content order before visual styling is added.",
+          "position": 1,
+          "lesson": {
+            "key": "1_1",
+            "title": "How HTML documents work",
+            "position": 1,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain how html documents work using clear terminology.",
+              "Apply how html documents work in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "HTML gives a browser a structured document. Start with doctype, html, head and body, then add meaningful elements inside the body. A document should communicate its purpose through headings, landmarks and content order before visual styling is added."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<!doctype html>\n<html lang=\"en\">\n  <head><title>Marian</title></head>\n  <body><main><h1>Learn with Marian</h1></main></body>\n</html>",
+                "expected_output": "A browser page titled Marian with one main heading.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Create a valid page for a Kenyan school club with a title, one main landmark and a clear heading."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q1_1",
+                    "prompt": "Which choice best demonstrates the idea in How HTML documents work?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Use semantic document structure and a meaningful heading."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m1t2",
+          "title": "Semantic elements and hierarchy",
+          "description": "Semantic elements describe the role of content. Use headings in a sensible hierarchy and landmarks such as header, nav, main and footer. This helps people, search engines and assistive technology understand the page.",
+          "position": 2,
+          "lesson": {
+            "key": "1_2",
+            "title": "Semantic elements and hierarchy",
+            "position": 2,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain semantic elements and hierarchy using clear terminology.",
+              "Apply semantic elements and hierarchy in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Semantic elements describe the role of content. Use headings in a sensible hierarchy and landmarks such as header, nav, main and footer. This helps people, search engines and assistive technology understand the page."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<header>Marian</header>\n<nav><a href=\"#courses\">Courses</a></nav>\n<main id=\"courses\"><h1>Courses</h1><section><h2>Programming</h2></section></main>",
+                "expected_output": "A page with labelled navigation, main content and a section.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Turn a plain list of school information into header, navigation, main, section and footer elements."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q1_2",
+                    "prompt": "Which choice best demonstrates the idea in Semantic elements and hierarchy?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Choose elements for meaning rather than appearance."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m1t3",
+          "title": "Links, images and media",
+          "description": "Links should describe their destination. Images need useful alternative text when they convey information. Decorative images can use empty alt text. Media should have controls and a meaningful context.",
+          "position": 3,
+          "lesson": {
+            "key": "1_3",
+            "title": "Links, images and media",
+            "position": 3,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain links, images and media using clear terminology.",
+              "Apply links, images and media in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Links should describe their destination. Images need useful alternative text when they convey information. Decorative images can use empty alt text. Media should have controls and a meaningful context."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<a href=\"/courses\">Explore courses</a>\n<img src=\"school.jpg\" alt=\"Learners in a computer lab\">",
+                "expected_output": "A descriptive link and an informative image.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Add two useful links and one informative image to your page, then explain the alt text you chose."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q1_3",
+                    "prompt": "Which choice best demonstrates the idea in Links, images and media?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Use descriptive link text and accurate alternative text."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m1t4",
+          "title": "Accessible forms",
+          "description": "Forms collect information through labelled controls. A label should identify its input, and related controls can be grouped. Native HTML validation provides useful first-line feedback.",
+          "position": 4,
+          "lesson": {
+            "key": "1_4",
+            "title": "Accessible forms",
+            "position": 4,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain accessible forms using clear terminology.",
+              "Apply accessible forms in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Forms collect information through labelled controls. A label should identify its input, and related controls can be grouped. Native HTML validation provides useful first-line feedback."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<label for=\"email\">Email</label>\n<input id=\"email\" name=\"email\" type=\"email\" required>",
+                "expected_output": "A labelled required email field.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Build a registration form with name, email and a course selection. Make every control labelled and keyboard usable."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q1_4",
+                    "prompt": "Which choice best demonstrates the idea in Accessible forms?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Every control has a clear label and an appropriate type."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "m2",
+      "title": "Quality and review",
+      "description": "Review and improve real HTML work.",
+      "position": 2,
+      "topics": [
+        {
+          "key": "m2t1",
+          "title": "Accessible forms",
+          "description": "Forms collect information through labelled controls. A label should identify its input, and related controls can be grouped. Native HTML validation provides useful first-line feedback.",
+          "position": 1,
+          "lesson": {
+            "key": "2_1",
+            "title": "Accessible forms",
+            "position": 1,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain accessible forms using clear terminology.",
+              "Apply accessible forms in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Forms collect information through labelled controls. A label should identify its input, and related controls can be grouped. Native HTML validation provides useful first-line feedback."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<label for=\"email\">Email</label>\n<input id=\"email\" name=\"email\" type=\"email\" required>",
+                "expected_output": "A labelled required email field.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Build a registration form with name, email and a course selection. Make every control labelled and keyboard usable."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q2_1",
+                    "prompt": "Which choice best demonstrates the idea in Accessible forms?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Every control has a clear label and an appropriate type."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m2t2",
+          "title": "Links, images and media",
+          "description": "Links should describe their destination. Images need useful alternative text when they convey information. Decorative images can use empty alt text. Media should have controls and a meaningful context.",
+          "position": 2,
+          "lesson": {
+            "key": "2_2",
+            "title": "Links, images and media",
+            "position": 2,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain links, images and media using clear terminology.",
+              "Apply links, images and media in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Links should describe their destination. Images need useful alternative text when they convey information. Decorative images can use empty alt text. Media should have controls and a meaningful context."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<a href=\"/courses\">Explore courses</a>\n<img src=\"school.jpg\" alt=\"Learners in a computer lab\">",
+                "expected_output": "A descriptive link and an informative image.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Add two useful links and one informative image to your page, then explain the alt text you chose."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q2_2",
+                    "prompt": "Which choice best demonstrates the idea in Links, images and media?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Use descriptive link text and accurate alternative text."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m2t3",
+          "title": "Semantic elements and hierarchy",
+          "description": "Semantic elements describe the role of content. Use headings in a sensible hierarchy and landmarks such as header, nav, main and footer. This helps people, search engines and assistive technology understand the page.",
+          "position": 3,
+          "lesson": {
+            "key": "2_3",
+            "title": "Semantic elements and hierarchy",
+            "position": 3,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain semantic elements and hierarchy using clear terminology.",
+              "Apply semantic elements and hierarchy in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Semantic elements describe the role of content. Use headings in a sensible hierarchy and landmarks such as header, nav, main and footer. This helps people, search engines and assistive technology understand the page."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<header>Marian</header>\n<nav><a href=\"#courses\">Courses</a></nav>\n<main id=\"courses\"><h1>Courses</h1><section><h2>Programming</h2></section></main>",
+                "expected_output": "A page with labelled navigation, main content and a section.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Turn a plain list of school information into header, navigation, main, section and footer elements."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q2_3",
+                    "prompt": "Which choice best demonstrates the idea in Semantic elements and hierarchy?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Choose elements for meaning rather than appearance."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m2t4",
+          "title": "How HTML documents work",
+          "description": "HTML gives a browser a structured document. Start with doctype, html, head and body, then add meaningful elements inside the body. A document should communicate its purpose through headings, landmarks and content order before visual styling is added.",
+          "position": 4,
+          "lesson": {
+            "key": "2_4",
+            "title": "How HTML documents work",
+            "position": 4,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain how html documents work using clear terminology.",
+              "Apply how html documents work in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "HTML gives a browser a structured document. Start with doctype, html, head and body, then add meaningful elements inside the body. A document should communicate its purpose through headings, landmarks and content order before visual styling is added."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "html",
+                "code": "<!doctype html>\n<html lang=\"en\">\n  <head><title>Marian</title></head>\n  <body><main><h1>Learn with Marian</h1></main></body>\n</html>",
+                "expected_output": "A browser page titled Marian with one main heading.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Create a valid page for a Kenyan school club with a title, one main landmark and a clear heading."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q2_4",
+                    "prompt": "Which choice best demonstrates the idea in How HTML documents work?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Use semantic document structure and a meaningful heading."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "practical_project": {
+    "title": "HTML Intermediate Capstone",
+    "brief": "Build HTML Intermediate Capstone using the skills from this course. Include a short explanation of your decisions, test the result on mobile and desktop, and make a small accessibility review.",
+    "deliverables": [
+      "Working project",
+      "Source files",
+      "Short learner reflection",
+      "Testing checklist"
+    ]
+  },
+  "final_assessment": {
+    "title": "HTML — Intermediate final assessment",
+    "instructions": "Complete the practical task, then answer the knowledge checks and explain two implementation decisions.",
+    "passing_guidance": "Demonstrate the required structure, test the result, and explain why the chosen approach is appropriate.",
+    "marking_guidance": [
+      "Correctness and structure",
+      "Accessibility and usability",
+      "Practical application",
+      "Explanation and testing"
+    ]
+  },
+  "teacher_materials": {
+    "notes": "Encourage learners to build from semantic structure, test incrementally, and explain their choices rather than copying patterns without understanding them.",
+    "safety": "Use only learner-owned or authorised files and environments."
+  },
+  "provenance": {
+    "source": "Marian curriculum expansion",
+    "generated": "2026-11-25",
+    "content_note": "Standalone HTML/CSS curriculum added to complement the existing Web Development pathway."
+  }
+}

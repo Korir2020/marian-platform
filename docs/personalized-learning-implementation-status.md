@@ -477,3 +477,38 @@ Hardened `scripts/release_readiness.py` to invoke subprocesses under a minimal e
 The focused quiz/content-governance run discovered **27 tests: 26 passed, 1 SQLite concurrency test skipped**. `manage.py check` and `makemigrations --check --dry-run` passed. The complete Marian backend suite discovered **1,291 tests: 1,289 passed, 2 skipped**. The final Activity 20 runner completed successfully: isolation tests **2/2**, Activity 18–19 focus **3/3**, learning-domain suite **195 discovered / 193 passed / 2 skipped**, backup/restore rehearsal passed, frontend tests **18/18**, lint **0 errors / 79 existing warnings**, and Vite build passed. SQLite cannot implement `SELECT FOR UPDATE`; both skipped tests remain for isolated PostgreSQL verification. No production DB was migrated or touched; provider credentials were removed from every check subprocess.
 
 The delivery remains a source/staging candidate, not a production certification. Existing Marian marks, examination, publication, reporting, billing, migration, and finance code paths were not altered by this activity. See the canonical roadmap and `activity20-release-readiness.md` for the remaining owner, policy, provider, PostgreSQL, real-device, retention, and deployment gates.
+
+## Content Studio Stage 1 - 19 November 2026 (curator role, platform-wide authoring, licence check)
+
+Branch `feature/content-studio-stage1`, not merged to main. Added the `LearningContentRole` model (roles `author` and `curator`, active flag, granted by, granted at) with additive migration `0013_learningcontentrole`. Only a superuser can grant a role and each grant is audit-logged. Superuser and `is_staff` get no implied authority.
+
+Added `MarianContentAuthor` and `MarianContentCurator` permissions and platform-wide endpoints in `platform_api.py`, separate from the school Studio endpoints. Authors create, edit and submit platform content (`scope="public"`, no school). Only curators review it, and a reviewer cannot be the author. Drafts are visible only to their author.
+
+Added a licence check at submit: CC BY-NC and CC BY-ND are rejected, Public Domain/CC0, CC BY and CC BY-SA are accepted, and any other licence needs a recorded permission note in rights notes.
+
+The publication gate (`PUBLICATION_POLICY_APPROVED = False`) is unchanged and publish still returns 503. No exam data was used. No AI provider is approved.
+
+### Verification for this update
+
+Learning-domain suite on the feature branch: 208 tests at the end of Stage 1 (254 after Stage 6), OK, 2 skipped (Stage 0 baseline was 201). Frontend was not changed and was not re-run.
+
+## Content Studio Stages 2 to 6 - 20 November 2026
+
+- Stage 2: licence source types, expiry and verifier fields, evidence checks at submit (migration 0014).
+- Stage 3: duplicate a resource with a parent link; approval stamps the licence verifier (0015).
+- Stage 4: superuser-only curator revoke endpoint, audited. It builds on the LearningContentRole model added in Stage 1.
+- Stage 5: takedown with a required reason and audit fields (0016); allowlisted YouTube embed_url on the learner detail.
+- Stage 6: question bank. New LearningQuestion table (0017), one row per quiz question, synced on every save. Existing quizzes copied in by 0018. The quiz JSON and learner scoring are unchanged.
+- Stage 6 lookup: learning/question_lookup.py returns approved questions by topic and difficulty. It reuses the learner visibility rules, never returns answers, and is read-only.
+- Learning suite on the feature branch after Stage 6: 254 tests, OK, 2 skipped. Full backend suite: 1363 tests, OK, 9 skipped.
+- The publication gate PUBLICATION_POLICY_APPROVED remains False. Nothing is merged to main.
+
+## Content Studio Stage 7 - 20 November 2026
+
+- Frontend, all in `frontend/src/StaffLearning.jsx` (plus `staffLearningUtils.js` and `Dash.jsx`): duplicate button in the teacher library (resources only); admin "Approved and published" list with a takedown panel (reason of 1 to 500 characters); source type, licence URL and licence expiry on the resource form; read-only version history in the admin inspect view.
+- Curator review screen: `CuratorReview` lists `platform/review-queue/` with Approve and Request changes buttons that post to `platform/resources/<id>/review/`. It hides itself when the server refuses (403), so only users with an active curator role see it.
+- Entry points: the screens were not linked from the app before. `Dash.jsx` now has a Learning tab for teachers (`TeacherLearningStudio`), school admins (`SchoolLearningCentre`, which includes the curator panel) and superadmins (curator panel only).
+- Version restore: `POST studio/resources/<id>/revisions/<version>/restore/` (resources only). It reads an old snapshot, keeps only the editable content fields and the framework and topic links, and saves through the normal edit path, so it is refused with 409 unless the resource is a draft or has changes requested. It creates a new version and never edits an old one. Like any edit it resets the status to draft and clears the reviewer and licence-verified marks, so restored content needs review again. Translations, attachments and licence verification are not restored. The teacher edit form shows an "Earlier versions" list with a Restore button.
+- Not covered: restore for programmes (paths). The frontend tests cannot render `StaffLearning.jsx`, so the new panels are checked by the build only; a manual look is still pending.
+- Tests: learning suite 259, OK, 2 skipped. Full backend suite: 1368, OK, 9 skipped (the skips need `pdftotext`). Frontend suite: 22 passing (`npm test` in `frontend`).
+- The publication gate `PUBLICATION_POLICY_APPROVED` remains False. Nothing is merged to main.

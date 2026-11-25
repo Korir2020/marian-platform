@@ -142,11 +142,60 @@ def _https(value, name, *, required=False):
     return value
 
 
+def _license_error(obj):
+    """Allow PD/CC0, CC BY, CC BY-SA; reject NC/ND; others need a note."""
+    import re as _re
+
+    tokens = _re.findall(r"[a-z0-9]+", (obj.license_name or "").lower())
+    squashed = "".join(tokens)
+    if (
+        "nc" in tokens
+        or "nd" in tokens
+        or "noncommercial" in squashed
+        or "noderiv" in squashed
+    ):
+        return "CC BY-NC and CC BY-ND licences are not accepted."
+    core = [t for t in tokens if not t.isdigit()]
+    if (
+        core in (["cc", "by"], ["cc", "by", "sa"])
+        or "cc0" in core
+        or core[:2] == ["public", "domain"]
+        or core[:2] == ["marian", "owned"]
+    ):
+        return None
+    if not (obj.rights_notes or "").strip():
+        return "Other licences need a recorded permission note in rights notes."
+    return None
+
+
+def _source_error(obj):
+    """Stage 2: source type, licence expiry and evidence for each source type."""
+    from datetime import date
+    if not hasattr(obj, "source_type"):
+        return None
+    kind = obj.source_type
+    if obj.scope == "public" and not kind:
+        return "Choose a source type before submission."
+    if obj.license_expires_on and obj.license_expires_on < date.today():
+        return "The recorded licence has expired. Renew it before submission."
+    if kind == "open_licensed" and not (obj.license_url or "").strip():
+        return "Open-licensed content needs the licence URL."
+    if kind == "commercial_permission" and not (obj.rights_notes or "").strip():
+        return "Commercial content needs the written permission recorded in rights notes."
+    return None
+
+
 def _metadata_error(obj):
     if not obj.source_name.strip():
         return "Record the content provenance/source before submission."
     if not (obj.license_name.strip() or obj.rights_notes.strip()):
         return "Record the licence or documented usage rights before submission."
+    licence_problem = _license_error(obj)
+    if licence_problem:
+        return licence_problem
+    source_problem = _source_error(obj)
+    if source_problem:
+        return source_problem
     if not obj.attribution.strip():
         return "Record attribution before submission."
     if not _normalize_language(obj.language_code):
@@ -235,6 +284,9 @@ def _resource_snapshot(obj):
         "source_name": obj.source_name, "license_name": obj.license_name,
         "license_url": obj.license_url, "attribution": obj.attribution,
         "rights_notes": obj.rights_notes,
+        "source_type": obj.source_type,
+        "license_expires_on": obj.license_expires_on.isoformat() if obj.license_expires_on else None,
+        "license_verified_at": obj.license_verified_at.isoformat() if obj.license_verified_at else None,
         "private_assets": [
             {"id": asset.pk, "content_type": asset.content_type,
              "size_bytes": asset.size_bytes, "scan_state": asset.scan_state}
@@ -292,6 +344,10 @@ def _resource_json(obj):
         "id": obj.pk, "scope": obj.scope, "school_id": obj.school_id,
         "title": obj.title, "summary": obj.summary, "body": obj.body,
         "practice_quiz": obj.practice_quiz,
+        "source_type": obj.source_type,
+        "license_expires_on": str(obj.license_expires_on) if obj.license_expires_on else None,
+        "license_verified_by_id": obj.license_verified_by_id,
+        "license_verified_at": obj.license_verified_at,
         "resource_type": obj.resource_type, "origin": obj.origin,
         "external_url": obj.external_url, "language_code": obj.language_code,
         "difficulty": obj.difficulty, "access_tier": obj.access_tier,
@@ -333,6 +389,9 @@ def _path_json(obj):
     }
 
 
+RESOURCE_INPUTS = RESOURCE_INPUTS | {"source_type", "license_expires_on"}
+
+
 def _set_resource_fields(obj, data):
     unknown = set(data) - RESOURCE_INPUTS
     if unknown:
@@ -365,6 +424,20 @@ def _set_resource_fields(obj, data):
         obj.external_url = _https(data["external_url"], "external_url")
     if "license_url" in data:
         obj.license_url = _https(data["license_url"], "license_url")
+    if "source_type" in data:
+        if data["source_type"] not in {""} | {key for key, _ in LearningResource.SOURCE_TYPES}:
+            raise ValueError("Invalid source_type.")
+        obj.source_type = data["source_type"]
+    if "license_expires_on" in data:
+        from datetime import date as _date
+        value = data["license_expires_on"]
+        if value in (None, ""):
+            obj.license_expires_on = None
+        else:
+            try:
+                obj.license_expires_on = _date.fromisoformat(value)
+            except (TypeError, ValueError):
+                raise ValueError("Use a licence expiry date like 2027-01-31.")
     if "practice_quiz" in data:
         if obj.resource_type == "interactive":
             obj.practice_quiz = normalize_practice_quiz(
@@ -508,6 +581,9 @@ def _save_content(request, kind, obj, data, creating):
         obj.version += 1
         obj.reviewed_by = None
         obj.reviewed_at = None
+        if hasattr(obj, "license_verified_by"):
+            obj.license_verified_by = None
+            obj.license_verified_at = None
     if kind == "resource" and obj.origin == "external":
         if not obj.external_url:
             return Response({"detail": "External resources require an HTTPS source URL."}, status=400)
@@ -618,7 +694,12 @@ def _transition(request, kind, content_id, action):
             obj.status = "in_review"
             obj.reviewed_by = None
             obj.reviewed_at = None
-            obj.save(update_fields=["status", "reviewed_by", "reviewed_at", "updated_at"])
+            save_fields = ["status", "reviewed_by", "reviewed_at", "updated_at"]
+            if hasattr(obj, "license_verified_by"):
+                obj.license_verified_by = None
+                obj.license_verified_at = None
+                save_fields += ["license_verified_by", "license_verified_at"]
+            obj.save(update_fields=save_fields)
             _audit(request, obj, f"{kind}_submitted", version=obj.version)
             return _content_view(request, kind, obj)
 
@@ -645,7 +726,12 @@ def _transition(request, kind, content_id, action):
             obj.status = "approved" if decision == "approve" else "changes_requested"
             obj.reviewed_by = request.user
             obj.reviewed_at = timezone.now()
-            obj.save(update_fields=["status", "reviewed_by", "reviewed_at", "updated_at"])
+            save_fields = ["status", "reviewed_by", "reviewed_at", "updated_at"]
+            if decision == "approve" and hasattr(obj, "license_verified_by"):
+                obj.license_verified_by = request.user
+                obj.license_verified_at = obj.reviewed_at
+                save_fields += ["license_verified_by", "license_verified_at"]
+            obj.save(update_fields=save_fields)
             _audit(request, obj, f"{kind}_{'approved' if decision == 'approve' else 'changes_requested'}", version=obj.version)
             return _content_view(request, kind, obj)
 
@@ -974,6 +1060,32 @@ def studio_resource_revisions(request, resource_id):
     return _revisions(request, "resource", resource_id)
 
 
+@api_view(["POST"])
+@permission_classes([SchoolContentAuthor, SchoolNotSuspended])
+@throttle_classes([LearningContentThrottle])
+def studio_resource_restore(request, resource_id, version):
+    data, error = _body_object(request)
+    if error:
+        return error
+    if data or request.query_params:
+        return Response({"detail": "Restore does not accept client-supplied content."}, status=400)
+    try:
+        with transaction.atomic():
+            locked = _resource_queryset(request).select_for_update().filter(pk=resource_id).first()
+            if locked is None:
+                return Response({"detail": "Learning content not found."}, status=404)
+            row = LearningContentRevision.objects.filter(resource=locked, version=version).first()
+            if row is None or not isinstance(row.snapshot, dict):
+                return Response({"detail": "Version not found."}, status=404)
+            restored = {k: row.snapshot[k] for k in RESOURCE_INPUTS if k in row.snapshot}
+            response = _save_content(request, "resource", locked, restored, creating=False)
+            if response.status_code == 200:
+                _audit(request, locked, "resource_version_restored", version=locked.version, restored_from=version)
+            return response
+    except (ValueError, DjangoValidationError) as exc:
+        return Response({"detail": str(exc)}, status=400)
+
+
 @api_view(["GET"])
 @permission_classes([SchoolContentAuthor, SchoolNotSuspended])
 @throttle_classes([LearningContentThrottle])
@@ -1086,3 +1198,65 @@ def archive_resource(request, resource_id):
 @throttle_classes([LearningContentThrottle])
 def archive_path(request, path_id):
     return _transition(request, "path", path_id, "archive")
+
+
+@api_view(["POST"])
+@permission_classes([SchoolContentAuthor, SchoolNotSuspended])
+@throttle_classes([LearningContentThrottle])
+def duplicate_resource(request, resource_id):
+    src = _resource_queryset(request).filter(pk=resource_id).first()
+    if src is None:
+        return Response({"detail": "Not found."}, status=404)
+    keep = ("title", "summary", "body", "practice_quiz", "resource_type",
+            "origin", "external_url", "language_code", "difficulty",
+            "age_min", "age_max", "access_tier", "source_name",
+            "license_name", "license_url", "attribution", "rights_notes",
+            "source_type", "license_expires_on")
+    obj = LearningResource(**{f: getattr(src, f) for f in keep})
+    obj.scope = "school"
+    obj.school = _actor(request).school
+    obj.author = request.user
+    obj.status = "draft"
+    obj.version = 1
+    obj.parent = src
+    _clean_model(obj)
+    with transaction.atomic():
+        obj.save()
+        obj.frameworks.set(src.frameworks.all())
+        obj.topics.set(src.topics.all())
+        _record_revision(obj, request.user)
+        _audit(request, obj, "resource_duplicated", version=obj.version, source_id=src.pk)
+    return Response(_resource_json(obj), status=201)
+
+
+@api_view(["POST"])
+@permission_classes([SchoolContentAuthor, SchoolNotSuspended])
+@throttle_classes([LearningContentThrottle])
+def takedown_resource(request, resource_id):
+    data, error = _body_object(request)
+    if error:
+        return error
+    if set(data) - {"reason"}:
+        return Response({"detail": "Takedown accepts only a reason."}, status=400)
+    reason = data.get("reason")
+    if not isinstance(reason, str) or not reason.strip() or len(reason.strip()) > 500:
+        return Response({"detail": "A reason of 1 to 500 characters is required."}, status=400)
+    with transaction.atomic():
+        obj = None
+        if _is_admin(request):
+            obj = _resource_queryset(request).select_for_update(of=("self",)).filter(pk=resource_id).first()
+        if obj is None:
+            return Response({"detail": "Not found."}, status=404)
+        if obj.status == "archived" and obj.taken_down_at:
+            return Response({"detail": "Already taken down."}, status=409)
+        was_live = obj.status == "published"
+        prior = obj.status
+        obj.status = "archived"
+        obj.takedown_reason = reason.strip()
+        obj.taken_down_at = timezone.now()
+        obj.taken_down_by = request.user
+        if was_live:
+            obj.retired_at = obj.taken_down_at
+        obj.save()
+        _audit(request, obj, "resource_taken_down", prior_status=prior, version=obj.version)
+    return Response(_resource_json(obj))

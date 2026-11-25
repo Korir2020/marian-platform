@@ -2,6 +2,7 @@ import { Icon } from "./icons";
 import { PageShell } from "./SiteChrome";
 import schoolImg from "./assets/school-management.jpg";
 import learnImg from "./assets/personalized-learning.jpg";
+import { PathwayCards } from "./PathwayPage";
 
 function Btn({ v, size = "xl", className = "", onClick, children }) {
   return (
@@ -61,7 +62,8 @@ export function SiteHome({ go }) {
           </p>
           <div className="ms-hero-cta ms-fade" style={{ animationDelay: "240ms" }}>
             <Btn v="school" onClick={() => go("site-school")}><Icon name="building" /> Explore School Management</Btn>
-            <Btn v="learn" onClick={() => go("site-learning")}><Icon name="brain" /> Start Personalized Learning</Btn>
+            <Btn v="learn" onClick={() => go("pathways")}><Icon name="brain" /> Start Personalized Learning</Btn>
+            <Btn v="quiet" onClick={() => go("site-learning")}>Explore courses</Btn>
           </div>
         </div>
       </section>
@@ -208,7 +210,7 @@ export function SiteLearning({ go }) {
             <h1 className="ms-h1b ms-ink">A learning path as unique as <em>every learner</em>.</h1>
             <p className="ms-lead2 ms-muted">CBC subjects plus Computer Science, Life Skills and more — paced for each learner, with progress parents can follow.</p>
             <div className="ms-hero2-cta">
-              <Btn v="learn" onClick={() => go("join")}>Start Personalized Learning <Icon name="arrow" s={18} /></Btn>
+              <Btn v="learn" onClick={() => go("pathways")}>Start Personalized Learning <Icon name="arrow" s={18} /></Btn>
               <Btn v="quiet" onClick={() => go("login")}>I already have an account</Btn>
             </div>
           </div>
@@ -241,6 +243,24 @@ export function SiteLearning({ go }) {
         </div>
       </section>
 
+      <section className="ms-container ms-block">
+        <div className="ms-block-head">
+          <p className="ms-eyebrow ms-c-learn">New pathways</p>
+          <h2 className="ms-h2">Python, JavaScript, Software and Web</h2>
+        </div>
+        <PathwayCards go={go} />
+        <button type="button" className="cy-card" onClick={() => go('site-cybersecurity')}>
+          <span>NEW</span>
+          <b>Cybersecurity Academy</b>
+          Eight stages from foundations to specialization, with safe lab practice.
+        </button>
+        <button type='button' className='cy-card' onClick={() => { window.location.href = '/studio.html'; }}>
+          <span>NEW</span>
+          <b>Marian Studio</b>
+          Practice lab, knowledge hub, creative studio and language pathways.
+        </button>
+      </section>
+
       <section className="ms-how">
         <div className="ms-container ms-how-in">
           <h2 className="ms-how-h">How it works</h2>
@@ -253,7 +273,7 @@ export function SiteLearning({ go }) {
               </div>
             ))}
           </div>
-          <Btn v="white" className="ms-how-btn" onClick={() => go("join")}>Build my learning path <Icon name="arrow" s={18} /></Btn>
+          <Btn v="white" className="ms-how-btn" onClick={() => go("pathways")}>Build my learning path <Icon name="arrow" s={18} /></Btn>
         </div>
       </section>
     </PageShell>

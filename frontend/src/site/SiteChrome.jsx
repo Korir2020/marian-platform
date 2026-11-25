@@ -45,7 +45,8 @@ export function SiteHeader({ go, active }) {
         </nav>
         <div className="ms-header-cta">
           <button type="button" className="ms-btn ms-btn--ghost ms-btn--sm" onClick={() => nav("login")}>Sign in</button>
-          <button type="button" className="ms-btn ms-btn--ink ms-btn--sm ms-pill" onClick={() => nav("join")}>Get started</button>
+          <button type="button" className="ms-btn ms-btn--ghost ms-btn--sm ms-pill" onClick={() => nav("site-learning")}>Explore</button>
+          <button type="button" className="ms-btn ms-btn--ink ms-btn--sm ms-pill" onClick={() => nav("pathways")}>Start</button>
         </div>
         <button type="button" className="ms-burger" onClick={() => setOpen((o) => !o)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
           <Icon name={open ? "close" : "menu"} s={20} />
@@ -57,9 +58,10 @@ export function SiteHeader({ go, active }) {
             {LINKS.map(([to, label]) => (
               <button key={to} type="button" className="ms-mobile-link" onClick={() => nav(to)}>{label}</button>
             ))}
-            <div className="ms-mobile-cta">
-              <button type="button" className="ms-btn ms-btn--quiet ms-btn--lg ms-pill" onClick={() => nav("login")}>Sign in</button>
-              <button type="button" className="ms-btn ms-btn--ink ms-btn--lg ms-pill" onClick={() => nav("join")}>Get started</button>
+      <div className="ms-mobile-cta">
+        <button type="button" className="ms-btn ms-btn--quiet ms-btn--lg ms-pill" onClick={() => nav("login")}>Sign in</button>
+        <button type="button" className="ms-btn ms-btn--ghost ms-btn--lg ms-pill" onClick={() => nav("site-learning")}>Explore</button>
+        <button type="button" className="ms-btn ms-btn--ink ms-btn--lg ms-pill" onClick={() => nav("pathways")}>Start</button>
             </div>
           </nav>
         </div>

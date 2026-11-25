@@ -1,0 +1,195 @@
+{
+  "status": "draft",
+  "key": "javascript",
+  "title": "Welcome to JavaScript Programming",
+  "course_title": "JavaScript Programming — Beginner",
+  "level": "beginner",
+  "learning_outcomes": [
+    "Translate a familiar task into inputs, processing steps, and expected outputs.",
+    "Write and run JavaScript scripts with variables, operators, strings, and Boolean conditions.",
+    "Use branches, loops, and functions to express reusable behavior.",
+    "Represent small collections and records with arrays and objects.",
+    "Validate input, handle expected errors, and test normal and edge cases.",
+    "Organize code with ES modules and explain the limits of local in-memory examples."
+  ],
+  "module_titles": [
+    "Start programming with JavaScript",
+    "Work with numbers, text, and conditions",
+    "Control repetition and reuse",
+    "Model data and organize a small program"
+  ],
+  "sections": [
+    {
+      "heading": "What is JavaScript Programming?",
+      "body": "JavaScript programming means writing instructions in JavaScript so a computer can perform tasks. Think of it like giving clear directions to a helper: each instruction tells the helper what to do next."
+    },
+    {
+      "heading": "Why is it useful?",
+      "body": "JavaScript is widely used to make websites respond to people, and it can also run programs outside a browser. It can support school tools, online shop features, mobile-friendly services, and interactive forms used by organisations and small businesses in Kenya and across Africa."
+    },
+    {
+      "heading": "What can you build or do with it?",
+      "body": "You will plan a small task, run JavaScript scripts, work with numbers and text, make decisions, repeat instructions, and organise information in arrays and objects. You will combine these skills in a Fictional Reading Shelf Catalog."
+    },
+    {
+      "heading": "How to use these lessons",
+      "body": "Read the explanation, predict the result of each code example, and then run it yourself. Use the knowledge checks to check your understanding and the activities to practise; compare what happened with what you predicted and investigate any error."
+    },
+    {
+      "heading": "What you need",
+      "body": "No programming experience is required. You need an approved computer or coding environment with Node.js 20 or newer; internet is useful for setup and reading resources, but the beginner exercises use built-in tools and do not need extra packages."
+    }
+  ],
+  "terms": [
+    {
+      "term": "Program",
+      "meaning": "Instructions written so a computer can perform a task.",
+      "example": "A script that totals prices.",
+      "how_used": "In JavaScript Programming, you use program as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use program when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding program helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A script that totals prices.",
+      "example_explanation": "This example shows program in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Algorithm",
+      "meaning": "A clear, ordered plan for solving a problem.",
+      "example": "Read two prices, add them, show the total.",
+      "how_used": "In JavaScript Programming, you use algorithm as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use algorithm when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding algorithm helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "Read two prices, add them, show the total.",
+      "example_explanation": "This example shows algorithm in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Input",
+      "meaning": "Information supplied to a program.",
+      "example": "A learner's chosen name.",
+      "how_used": "In JavaScript Programming, you use input as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use input when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding input helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A learner's chosen name.",
+      "example_explanation": "This example shows input in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Output",
+      "meaning": "Information a program produces.",
+      "example": "The message \"Welcome, Amina\".",
+      "how_used": "In JavaScript Programming, you use output as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use output when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding output helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "The message \"Welcome, Amina\".",
+      "example_explanation": "This example shows output in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Node.js",
+      "meaning": "A runtime that lets JavaScript execute outside a web browser.",
+      "example": "Run a file with node app.js.",
+      "how_used": "You can run scripts and build server-side or command-line tools with it.",
+      "when_to_use": "When you need JavaScript to run on a computer or server rather than only in a browser.",
+      "why_it_matters": "It gives JavaScript access to useful system and development capabilities.",
+      "practical_example": "console.log(\"Hello from Node.js\");",
+      "example_explanation": "Running this file with Node.js prints the message in the terminal."
+    },
+    {
+      "term": "Script",
+      "meaning": "A file containing code for a program to run.",
+      "example": "app.js",
+      "how_used": "In JavaScript Programming, you use script as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use script when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding script helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "app.js",
+      "example_explanation": "This example shows script in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Variable",
+      "meaning": "A named place used to refer to a value.",
+      "example": "let score = 10;",
+      "how_used": "In JavaScript Programming, you use variable as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use variable when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding variable helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "let score = 10;",
+      "example_explanation": "This example shows variable in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "String",
+      "meaning": "A value containing text.",
+      "example": "\"Marian\"",
+      "how_used": "In JavaScript Programming, you use string as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use string when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding string helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "\"Marian\"",
+      "example_explanation": "This example shows string in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Number",
+      "meaning": "A JavaScript value used for numeric quantities.",
+      "example": "42",
+      "how_used": "In JavaScript Programming, you use number as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use number when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding number helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "42",
+      "example_explanation": "This example shows number in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Boolean",
+      "meaning": "A value that is either true or false.",
+      "example": "isReady = true",
+      "how_used": "In JavaScript Programming, you use boolean as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use boolean when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding boolean helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "isReady = true",
+      "example_explanation": "This example shows boolean in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Condition",
+      "meaning": "A test that decides which instructions should run.",
+      "example": "score >= 50",
+      "how_used": "In JavaScript Programming, you use condition as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use condition when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding condition helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "score >= 50",
+      "example_explanation": "This example shows condition in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Function",
+      "meaning": "A reusable group of instructions that performs a task.",
+      "example": "function greet() {}",
+      "how_used": "In JavaScript Programming, you use function as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use function when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding function helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "function greet() {}",
+      "example_explanation": "This example shows function in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Array",
+      "meaning": "An ordered collection of values.",
+      "example": "[\"English\", \"Maths\"]",
+      "how_used": "In JavaScript Programming, you use array as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use array when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding array helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "[\"English\", \"Maths\"]",
+      "example_explanation": "This example shows array in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Object",
+      "meaning": "A collection of named values describing one thing.",
+      "example": "{ name: \"Asha\" }",
+      "how_used": "In JavaScript Programming, you use object as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use object when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding object helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "{ name: \"Asha\" }",
+      "example_explanation": "This example shows object in a small, concrete situation. Try changing one part and observe what happens."
+    },
+    {
+      "term": "Error",
+      "meaning": "A problem in code or its execution that needs attention.",
+      "example": "A missing closing bracket.",
+      "how_used": "In JavaScript Programming, you use error as part of the practical steps in a program or activity. Start with a small example, observe the result, then adapt it to the task.",
+      "when_to_use": "Use error when the current task requires the idea described by this term. If you are unsure, look at the lesson explanation and example before applying it.",
+      "why_it_matters": "Understanding error helps you read course instructions, explain your work, and make better decisions instead of relying on memorised steps.",
+      "practical_example": "A missing closing bracket.",
+      "example_explanation": "This example shows error in a small, concrete situation. Try changing one part and observe what happens."
+    }
+  ]
+}

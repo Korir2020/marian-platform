@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'api',
     'billing.apps.BillingConfig',
     "learning.apps.LearningConfig",
+    "authoring",
+    "catalog",
+    "governance",
+    "integration",
 ]
 
 MIDDLEWARE = [
@@ -220,6 +224,7 @@ if os.environ.get("DB_NAME"):
         "HOST": os.environ.get("DB_HOST", "localhost"),
         "PORT": os.environ.get("DB_PORT", "5432"),
         "CONN_MAX_AGE": 60,
+        "OPTIONS": {"sslmode": os.environ.get("DB_SSLMODE", "prefer")},
     }
 elif not DEBUG:
     raise ImproperlyConfigured("Set DB_NAME (PostgreSQL) when DEBUG is off.")
@@ -314,3 +319,6 @@ REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"]["admin_account"] = "1000/min" if "test"
 # Public demo request form: throttle and optional notification address.
 REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"]["demo_request"] = "1000/min" if "test" in sys.argv else "5/hour"
 DEMO_REQUEST_NOTIFY = os.environ.get("DJANGO_DEMO_REQUEST_EMAIL", "")
+
+# Content Studio V3: publishing of content stays disabled until approved.
+CONTENT_PUBLISHING_ENABLED = os.environ.get('CONTENT_PUBLISHING_ENABLED', 'false').lower() == 'true'

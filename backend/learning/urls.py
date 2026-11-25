@@ -25,6 +25,8 @@ from .assets_api import (
 from .content_api import (
     archive_path,
     archive_resource,
+    duplicate_resource,
+    takedown_resource,
     publish_path,
     publish_resource,
     review_path,
@@ -37,6 +39,7 @@ from .content_api import (
     studio_path_translations,
     studio_resource_detail,
     studio_resource_revisions,
+    studio_resource_restore,
     studio_resource_translations,
     studio_resources,
     studio_review_queue,
@@ -97,7 +100,18 @@ from .motivation_offline_api import (
 
 app_name = "learning"
 
+from . import platform_api  # noqa: E402
+
 urlpatterns = [
+    path('platform/resources/', platform_api.platform_resources, name="platform-resources"),
+    path('platform/resources/<int:resource_id>/', platform_api.platform_resource_detail, name="platform-resource-detail"),
+    path('platform/resources/<int:resource_id>/submit/', platform_api.platform_resource_submit, name="platform-resource-submit"),
+    path('platform/resources/<int:resource_id>/review/', platform_api.platform_resource_review, name="platform-resource-review"),
+    path('platform/resources/<int:resource_id>/publish/', platform_api.platform_resource_publish, name="platform-resource-publish"),
+    path('platform/roles/', platform_api.platform_role_grant, name="platform-role-grant"),
+    path('platform/roles/revoke/', platform_api.platform_role_revoke, name="platform-role-revoke"),
+    path('platform/resources/<int:resource_id>/takedown/', platform_api.platform_resource_takedown, name="platform-resource-takedown"),
+    path('platform/review-queue/', platform_api.platform_review_queue, name="platform-review-queue"),
     path("accounts/capabilities/", account_capabilities, name="account-capabilities"),
     path("accounts/register/", independent_registration, name="independent-registration"),
     path("subscriptions/plans/", subscription_plans, name="subscription-plans"),
@@ -154,7 +168,10 @@ urlpatterns = [
     path("studio/resources/<int:resource_id>/review/", review_resource, name="studio-resource-review"),
     path("studio/resources/<int:resource_id>/publish/", publish_resource, name="studio-resource-publish"),
     path("studio/resources/<int:resource_id>/archive/", archive_resource, name="studio-resource-archive"),
+    path("studio/resources/<int:resource_id>/duplicate/", duplicate_resource, name="studio-resource-duplicate"),
+    path("studio/resources/<int:resource_id>/takedown/", takedown_resource, name="studio-resource-takedown"),
     path("studio/resources/<int:resource_id>/revisions/", studio_resource_revisions, name="studio-resource-revisions"),
+    path("studio/resources/<int:resource_id>/revisions/<int:version>/restore/", studio_resource_restore, name="studio-resource-restore"),
     path("studio/resources/<int:resource_id>/translations/", studio_resource_translations, name="studio-resource-translations"),
     path("studio/resources/<int:resource_id>/translations/<int:translation_id>/submit/", submit_resource_translation, name="studio-resource-translation-submit"),
     path("studio/resources/<int:resource_id>/translations/<int:translation_id>/review/", review_resource_translation, name="studio-resource-translation-review"),

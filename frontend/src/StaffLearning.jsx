@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api";
 import { Button, Loading } from "./ui";
+import { takedownReasonError, takedownPayload } from "./staffLearningUtils";
 import "./StaffLearning.css";
 
 const BASE = "/api/learning/v1/";
@@ -83,7 +84,7 @@ function PracticeQuizEditor({ quiz, onChange }) {
 
 const blankResource = () => ({
   title: "", summary: "", body: "", practice_quiz: {}, resource_type: "lesson", language_code: "en",
-  difficulty: "beginner", age_min: "", age_max: "", source_name: "",
+  difficulty: "beginner", age_min: "", age_max: "", source_type: "", license_url: "", license_expires_on: "", source_name: "",
   license_name: "", attribution: "", rights_notes: "",
 });
 const blankPath = () => ({
@@ -123,7 +124,7 @@ function TeacherDraftWorkspace({ onNotice }) {
     setKind(contentKind);
     setEditing({ id: row.id, kind: contentKind });
     if (contentKind === "resource") {
-      const fields = ["title", "summary", "body", "practice_quiz", "resource_type", "origin", "external_url", "language_code", "difficulty", "access_tier", "age_min", "age_max", "source_name", "license_name", "license_url", "attribution", "rights_notes"];
+      const fields = ["title", "summary", "body", "practice_quiz", "resource_type", "origin", "external_url", "language_code", "difficulty", "access_tier", "age_min", "age_max", "source_name", "license_name", "license_url", "attribution", "rights_notes", "license_expires_on"];
       setForm({ ...blankResource(), ...Object.fromEntries(fields.filter((field) => field in row).map((field) => [field, row[field]])), age_min: row.age_min ?? "", age_max: row.age_max ?? "" });
     } else {
       const fields = ["title", "description", "language_code", "difficulty", "access_tier", "age_min", "age_max", "source_name", "license_name", "license_url", "attribution", "rights_notes"];
@@ -137,6 +138,7 @@ function TeacherDraftWorkspace({ onNotice }) {
     const fields = { ...form };
     delete fields.objectivesText;
     delete fields.stepsText;
+  if (fields.license_expires_on === "") fields.license_expires_on = null;
     return {
       ...fields,
       age_min: fields.age_min === "" ? null : Number(fields.age_min),
@@ -162,6 +164,15 @@ function TeacherDraftWorkspace({ onNotice }) {
       await request(editing ? `${root}${editing.id}/` : root, editing ? "PATCH" : "POST", payload);
       onNotice(editing ? "Your draft changes have been saved." : "A private school draft has been created.");
       setEditing(null); setForm(kind === "resource" ? blankResource() : blankPath()); await load();
+    } catch (err) { setError(err.message); }
+    finally { setBusy(false); }
+  }
+  async function duplicate(row) {
+    setBusy(true); setError("");
+    try {
+      await request(`studio/resources/${row.id}/duplicate/`, "POST", {});
+      onNotice("A private draft copy has been created. Licence and attribution were carried over.");
+      await load();
     } catch (err) { setError(err.message); }
     finally { setBusy(false); }
   }
@@ -192,6 +203,7 @@ function TeacherDraftWorkspace({ onNotice }) {
           {loading ? <Loading /> : rows.length ? <div className="sl-list">{rows.map((row) => <article className="sl-row" key={row.id}>
             <div className="sl-row-main"><strong>{row.title}</strong><p>{row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "Private draft"}</p><StatusPill>{row.status}</StatusPill></div>
             <div className="sl-row-actions">
+{kind === 'resource' && <Button kind='secondary' busy={busy} onClick={() => duplicate(row)}>Duplicate</Button>}
               {["draft", "changes_requested"].includes(row.status) && <Button kind="secondary" onClick={() => edit(row, kind)}>Edit</Button>}
               {["draft", "changes_requested"].includes(row.status) && <Button kind="teal" busy={busy} onClick={() => submitForReview(row, kind)}>Submit</Button>}
             </div>
@@ -223,11 +235,13 @@ function TeacherDraftWorkspace({ onNotice }) {
           <details className="sl-metadata"><summary>Source, licence and attribution (required before review)</summary>
             <div className="sl-field"><label htmlFor="sl-source">Source/provenance</label><input id="sl-source" maxLength={240} value={form.source_name} onChange={(event) => setField("source_name", event.target.value)} /></div>
             <div className="sl-field"><label htmlFor="sl-license">Licence name (or record rights below)</label><input id="sl-license" maxLength={160} value={form.license_name} onChange={(event) => setField("license_name", event.target.value)} /></div>
+            {kind === "resource" && <><div className="sl-field"><label htmlFor="sl-source-type">Source type</label><select id="sl-source-type" value={form.source_type || ""} onChange={(event) => setField("source_type", event.target.value)}><option value="">Choose a source type</option><option value={"lesson"}>{"Lesson"}</option><option value={"article"}>{"Article"}</option><option value={"video"}>{"Video"}</option><option value={"audio"}>{"Audio"}</option><option value={"interactive"}>{"Interactive"}</option><option value={"worksheet"}>{"Worksheet"}</option><option value={"external_link"}>{"External link"}</option><option value={"other"}>{"Other"}</option></select></div><div className="sl-field"><label htmlFor="sl-license-url">Licence URL</label><input id="sl-license-url" type="url" value={form.license_url || ""} onChange={(event) => setField("license_url", event.target.value)} /></div><div className="sl-field"><label htmlFor="sl-license-expires">Licence expiry date (if any)</label><input id="sl-license-expires" type="date" value={form.license_expires_on || ""} onChange={(event) => setField("license_expires_on", event.target.value)} /></div></>}
             <div className="sl-field"><label htmlFor="sl-rights">Documented rights notes</label><textarea id="sl-rights" rows={2} maxLength={5000} value={form.rights_notes} onChange={(event) => setField("rights_notes", event.target.value)} /></div>
             <div className="sl-field"><label htmlFor="sl-attribution">Attribution</label><textarea id="sl-attribution" rows={2} maxLength={4000} value={form.attribution} onChange={(event) => setField("attribution", event.target.value)} /></div>
           </details>
           <Button kind="teal" type="submit" busy={busy}>{editing ? "Save private draft" : "Create private draft"}</Button>
         </form>
+        {editing && kind === 'resource' && <RestoreHistory id={editing.id} onRestored={async (version) => { onNotice(`Version ${version} was restored as a new draft version.`); setEditing(null); setForm(blankResource()); await load(); }} />}
       </div>
       <p className="sl-footnote">Drafts and requested changes are visible only to their author and authorised school reviewers. Attachments, external ingestion, automatic content generation and publishing are not enabled here.</p>
     </div>
@@ -341,6 +355,44 @@ function Toggle({ label, description, checked, onChange }) {
   return <label className="sl-setting-toggle"><span><strong>{label}</strong><small>{description}</small></span><input type="checkbox" checked={Boolean(checked)} onChange={(event) => onChange(event.target.checked)} /></label>;
 }
 
+function RestoreHistory({ id, onRestored }) {
+  const [rows, setRows] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+  useEffect(() => {
+    let live = true;
+    request(`studio/resources/${id}/revisions/`)
+      .then((data) => { if (live) setRows(list(data)); })
+      .catch(() => { if (live) setRows([]); });
+    return () => { live = false; };
+  }, [id]);
+  const restore = async (version) => {
+    if (!window.confirm(`Restore version ${version} as a new draft version?`)) return;
+    setBusy(true); setMsg("");
+    try { await request(`studio/resources/${id}/revisions/${version}/restore/`, "POST", {}); await onRestored(version); }
+    catch (e) { setMsg(e.message); }
+    setBusy(false);
+  };
+  if (rows === null) return <Loading />;
+  const older = rows.slice(1);
+  if (!older.length) return null;
+  return <div className="sl-metadata-box"><strong>Earlier versions</strong>{msg && <p className="sl-footnote">{msg}</p>}<ul>{older.map((row) => <li key={row.version}>Version {row.version} · {new Date(row.created_at).toLocaleDateString()} <Button kind="secondary" busy={busy} onClick={() => restore(row.version)}>Restore</Button></li>)}</ul></div>;
+}
+
+function VersionHistory({ id }) {
+  const [rows, setRows] = useState(null);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    let live = true;
+    request(`studio/resources/${id}/revisions/`)
+      .then((data) => { if (live) setRows(list(data)); })
+      .catch(() => { if (live) setFailed(true); });
+    return () => { live = false; };
+  }, [id]);
+  if (failed) return <p className="sl-footnote">Version history is not available for your role.</p>;
+  if (rows === null) return <Loading />;
+  return <div className="sl-metadata-box"><strong>Version history</strong>{rows.length ? <ul>{rows.map((row) => <li key={row.version}>Version {row.version} · {new Date(row.created_at).toLocaleDateString()}{row.created_by_id ? ` · author ${row.created_by_id}` : ""}</li>)}</ul> : <p>No versions recorded.</p>}</div>;
+}
 function AdminLearningCentre() {
   const [tab, setTab] = useState("overview");
   const [settings, setSettings] = useState(null);
@@ -353,6 +405,7 @@ function AdminLearningCentre() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [reason, setReason] = useState("");
 
   const load = useCallback(async () => {
     setLoading(true); setError("");
@@ -404,6 +457,18 @@ function AdminLearningCentre() {
         ? (decision === "approve" ? "Translation approved for reviewed metadata; this does not publish its parent content." : "Translation changes requested; the translator can edit and resubmit.")
         : (decision === "approve" ? "Content approved for school governance. Learner publishing remains disabled by the current Marian policy." : "Changes requested; the author can edit and resubmit the draft."));
       setSelected(null); await load();
+    } catch (err) { setError(err.message); }
+    finally { setBusy(false); }
+  }
+  async function takedown(item) {
+    const problem = takedownReasonError(reason);
+    if (problem) { setError(problem); return; }
+    if (!window.confirm("Take this resource down? It will be archived and removed from learners.")) return;
+    setBusy(true); setError(""); setMessage("");
+    try {
+      await request(`studio/resources/${item.id}/takedown/`, "POST", takedownPayload(reason));
+      setMessage("The resource has been taken down and the action recorded in the audit trail.");
+      setReason(""); setSelected(null); await load();
     } catch (err) { setError(err.message); }
     finally { setBusy(false); }
   }
@@ -468,7 +533,8 @@ function AdminLearningCentre() {
         </article>)}</div>}
         {(queue?.resource_translations?.length || queue?.path_translations?.length) ? <p className="sl-footnote">Translation approval validates only that language version. It does not publish its resource or programme parent.</p> : null}
       </section>
-      {selected && <section className="sl-panel"><div className="sl-subheading"><h3>{selected.title || "Content details"}</h3><Button kind="secondary" onClick={() => setSelected(null)}>Close</Button></div>
+      {(() => { const live = resources.filter((row) => ["approved", "published"].includes(row.status)); return live.length ? <section className="sl-panel"><SectionTitle eyebrow="Approved and published" title="Live school resources" text="Inspect an item to take it down if its licence or rights change." /><div className="sl-list">{live.map((row) => <article className="sl-row" key={row.id}><div className="sl-row-main"><span className="sl-eyebrow">{row.status}</span><strong>{row.title}</strong></div><div className="sl-row-actions"><Button kind="secondary" onClick={() => inspect({ ...row, kind: "resource" })}>Inspect</Button></div></article>)}</div></section> : null; })()}
+        {selected && <section className="sl-panel"><div className="sl-subheading"><h3>{selected.title || "Content details"}</h3><Button kind="secondary" onClick={() => setSelected(null)}>Close</Button></div>
         {selected.loading ? <Loading /> : <><p className="sl-footnote">School-only review · {selected.kind.replaceAll("_", " ")} · {selected.version ? `version ${selected.version} · ` : ""}{selected.status || selected.review_state}</p><p>{selected.summary || selected.description || "No short description."}</p><div className="sl-reading-body">{selected.body || "No text content."}</div>
           {selected.kind.endsWith("_translation") ? <div className="sl-metadata-box"><strong>Translation provenance</strong><p>Language: {selected.language_code}</p><p>Source: {selected.translation_source || "Not recorded"}</p><p>Translator account ID: {selected.translator_id || "Not recorded"}</p>{selected.objectives?.length > 0 && <p>Objectives: {selected.objectives.join(" · ")}</p>}</div>
             : <div className="sl-metadata-box"><strong>Rights and age controls</strong><p>Source: {selected.source_name || "Not recorded"}</p><p>Licence: {selected.license_name || "Not recorded"}</p><p>Age range: {selected.age_min ?? "No minimum"}–{selected.age_max ?? "No maximum"}</p><p>Attribution: {selected.attribution || "Not recorded"}</p></div>}
@@ -476,7 +542,9 @@ function AdminLearningCentre() {
           {selected.author_id === null ? <p className="sl-footnote">Author information was not supplied.</p> : null}
           <div className="sl-row-actions"><Button kind="teal" busy={busy} onClick={() => review(selected, "approve")}>Approve for school governance</Button><Button kind="secondary" busy={busy} onClick={() => review(selected, "request_changes")}>Request changes</Button></div></>}
       </section>}
-      <Notice>Publishing is disabled. Approved content is not visible to learners until the platform-wide rights, moderation and shared-catalogue policies are approved.</Notice>
+      {selected && !selected.kind.endsWith("_translation") && selected.kind === "resource" && ["approved", "published"].includes(selected.status) && <div className="sl-field"><label htmlFor="sl-takedown-reason">Takedown reason (required, up to 500 characters)</label><textarea id="sl-takedown-reason" maxLength={500} value={reason} onChange={(event) => setReason(event.target.value)} /><Button kind="secondary" busy={busy} onClick={() => takedown(selected)}>Take down</Button></div>}
+    {selected && !selected.loading && selected.kind === "resource" && <VersionHistory id={selected.id} />}
+    <Notice>Publishing is disabled. Approved content is not visible to learners until the platform-wide rights, moderation and shared-catalogue policies are approved.</Notice>
     </div>}
     {tab === "programmes" && <section className="sl-panel"><SectionTitle eyebrow="School learning programmes" title="Programme lifecycle" text="Learning paths are treated as school programmes. Manage the review lifecycle without bypassing the separate publishing lock." />
       {paths.length ? <div className="sl-list">{paths.map((path) => <article className="sl-row" key={path.id}><div className="sl-row-main"><strong>{path.title}</strong><p>{path.item_count || 0} steps · {path.language_code} · version {path.version}</p></div><StatusPill>{path.status}</StatusPill></article>)}</div> : <p className="sl-empty">No school learning programmes have been created yet.</p>}
@@ -485,6 +553,26 @@ function AdminLearningCentre() {
   </div>;
 }
 
+export function CuratorReview() {
+  const [rows, setRows] = useState(null);
+  const [hidden, setHidden] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+  const load = useCallback(() => request("platform/review-queue/")
+    .then((data) => setRows(list(data)))
+    .catch((e) => { if (e.status === 403) setHidden(true); else setMsg("The review queue could not be loaded."); }), []);
+  useEffect(() => { load(); }, [load]);
+  const decide = async (id, decision) => {
+    setBusy(true); setMsg("");
+    try { await request(`platform/resources/${id}/review/`, "POST", { decision }); await load(); }
+    catch (e) { setMsg(e.message); }
+    setBusy(false);
+  };
+  if (hidden) return null;
+  if (rows === null && !msg) return <Loading />;
+  return <div className="sl-metadata-box"><strong>Curator review</strong>{msg && <p className="sl-footnote">{msg}</p>}{rows && rows.length ? <div className="sl-list">{rows.map((row) => <article className="sl-row" key={row.id}><div className="sl-row-main"><strong>{row.title}</strong></div><Button kind="teal" busy={busy} onClick={() => decide(row.id, "approve")}>Approve</Button><Button kind="secondary" busy={busy} onClick={() => decide(row.id, "request_changes")}>Request changes</Button></article>)}</div> : <p className="sl-footnote">Nothing is waiting for review.</p>}</div>;
+}
+
 export function SchoolLearningCentre() {
-  return <AdminLearningCentre />;
+  return <><AdminLearningCentre /><CuratorReview /></>;
 }
