@@ -32,7 +32,7 @@ export default function CyberAcademyPage({ go }) {
   return (
     <PageShell go={go} active="site-learning">
       <div className="cy-wrap">
-        <main className="cy-main">
+        <div className="cy-main">
           <div className="cy-scan" />
           <div className="cy-in">
             <button type="button" className="cy-back" onClick={() => go('site-learning')}>
@@ -139,7 +139,7 @@ export default function CyberAcademyPage({ go }) {
               <p><strong>Safe by design.</strong> <span>Offensive techniques are confined to explicitly authorised, isolated environments.</span></p>
             </div>
           </div>
-        </main>
+        </div>
       </div>
     </PageShell>
   );
