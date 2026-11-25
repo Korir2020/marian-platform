@@ -1,0 +1,354 @@
+{
+  "manifest_version": 1,
+  "course_key": "css-beginner",
+  "pathway": {
+    "key": "css",
+    "title": "CSS",
+    "slug": "css",
+    "description": "A complete standalone CSS course with practical lessons, examples, guided activities and assessment."
+  },
+  "course": {
+    "title": "CSS — Beginner",
+    "level": "beginner",
+    "programming_language": "CSS",
+    "minimum_runtime_version": "Modern evergreen browser",
+    "dependencies": "A modern browser; no framework required.",
+    "language": "English",
+    "short_description": "A complete standalone CSS course with practical lessons, examples, guided activities and assessment.",
+    "prerequisites": "Basic computer literacy; no prior knowledge required.",
+    "estimated_guided_hours": 12,
+    "learning_outcomes": [
+      "Build correct, meaningful and accessible interfaces.",
+      "Apply the course concepts in practical projects.",
+      "Test, review and explain design decisions."
+    ]
+  },
+  "modules": [
+    {
+      "key": "m1",
+      "title": "Foundations",
+      "description": "Learn CSS from first principles.",
+      "position": 1,
+      "topics": [
+        {
+          "key": "m1t1",
+          "title": "Selectors and the cascade",
+          "description": "CSS matches elements with selectors and applies declarations. When rules conflict, the cascade considers specificity and source order. Keep selectors understandable so styles remain maintainable.",
+          "position": 1,
+          "lesson": {
+            "key": "1_1",
+            "title": "Selectors and the cascade",
+            "position": 1,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain selectors and the cascade using clear terminology.",
+              "Apply selectors and the cascade in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "CSS matches elements with selectors and applies declarations. When rules conflict, the cascade considers specificity and source order. Keep selectors understandable so styles remain maintainable."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "css",
+                "code": ".card { color: #243447; }\n.card h2 { margin-bottom: 0.5rem; }",
+                "expected_output": "The card and its heading receive the declared styles.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Style a course card using a class selector, then style its heading without using unnecessarily specific selectors."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q1_1",
+                    "prompt": "Which choice best demonstrates the idea in Selectors and the cascade?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Use clear selectors and understand which rule wins."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m1t2",
+          "title": "Box model and spacing",
+          "description": "Every element participates in the box model: content, padding, border and margin. Use box-sizing deliberately and build spacing from a consistent scale.",
+          "position": 2,
+          "lesson": {
+            "key": "1_2",
+            "title": "Box model and spacing",
+            "position": 2,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain box model and spacing using clear terminology.",
+              "Apply box model and spacing in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Every element participates in the box model: content, padding, border and margin. Use box-sizing deliberately and build spacing from a consistent scale."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "css",
+                "code": "* { box-sizing: border-box; }\n.card { padding: 1.5rem; margin: 1rem 0; border: 1px solid #ddd; }",
+                "expected_output": "A predictable card box with internal and external spacing.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Create a lesson card with readable padding, a subtle border and consistent vertical spacing."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q1_2",
+                    "prompt": "Which choice best demonstrates the idea in Box model and spacing?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Explain the difference between padding, border and margin."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "m2",
+      "title": "Practical structure",
+      "description": "Apply CSS to a small accessible project.",
+      "position": 2,
+      "topics": [
+        {
+          "key": "m2t1",
+          "title": "Flexbox and Grid",
+          "description": "Flexbox is useful for one-dimensional alignment; Grid is useful for two-dimensional page and card layouts. Both adapt to available space and reduce fragile positioning.",
+          "position": 1,
+          "lesson": {
+            "key": "2_1",
+            "title": "Flexbox and Grid",
+            "position": 1,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain flexbox and grid using clear terminology.",
+              "Apply flexbox and grid in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Flexbox is useful for one-dimensional alignment; Grid is useful for two-dimensional page and card layouts. Both adapt to available space and reduce fragile positioning."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "css",
+                "code": ".cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }\n.nav { display: flex; gap: 1rem; align-items: center; }",
+                "expected_output": "A three-column grid and aligned navigation.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Build a course-card grid that becomes one column on narrow screens and a navigation row that aligns vertically."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q2_1",
+                    "prompt": "Which choice best demonstrates the idea in Flexbox and Grid?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Choose Grid for the card layout and Flexbox for the navigation alignment."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "key": "m2t2",
+          "title": "Responsive design and accessibility",
+          "description": "Responsive design adapts content to different viewports. Start mobile-first, then add enhancements at larger widths. Focus states, contrast and reduced motion are part of professional CSS.",
+          "position": 2,
+          "lesson": {
+            "key": "2_2",
+            "title": "Responsive design and accessibility",
+            "position": 2,
+            "estimated_minutes": 45,
+            "objectives": [
+              "Explain responsive design and accessibility using clear terminology.",
+              "Apply responsive design and accessibility in a small practical task.",
+              "Test and explain the result of the implementation."
+            ],
+            "blocks": [
+              {
+                "type": "explanation",
+                "title": "Concepts and practical context",
+                "body": "Responsive design adapts content to different viewports. Start mobile-first, then add enhancements at larger widths. Focus states, contrast and reduced motion are part of professional CSS."
+              },
+              {
+                "type": "worked_example",
+                "title": "A small practical example",
+                "language": "css",
+                "code": "body { padding: 1rem; }\n@media (min-width: 48rem) { body { padding: 2rem; } }\n@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }",
+                "expected_output": "The page gains space on larger screens while respecting reduced motion.",
+                "explanation": "Read the example line by line. Identify the structure, the rule being demonstrated, and the part you could change safely."
+              },
+              {
+                "type": "activity",
+                "title": "Guided practical activity",
+                "instructions": [
+                  "Make a lesson page mobile-first, add a desktop breakpoint, visible keyboard focus and a reduced-motion rule."
+                ],
+                "success_checks": [
+                  "The implementation matches the stated goal.",
+                  "The learner checks both a normal case and one boundary case.",
+                  "The learner can explain the important lines or declarations."
+                ]
+              },
+              {
+                "type": "knowledge_check",
+                "title": "Check your understanding",
+                "items": [
+                  {
+                    "id": "q2_2",
+                    "prompt": "Which choice best demonstrates the idea in Responsive design and accessibility?",
+                    "choices": [
+                      {
+                        "id": "A",
+                        "text": "Test multiple widths and preserve usable focus and readable contrast."
+                      },
+                      {
+                        "id": "B",
+                        "text": "Add unrelated code until the page appears different."
+                      },
+                      {
+                        "id": "C",
+                        "text": "Skip testing because the example worked once."
+                      }
+                    ],
+                    "answer": "A",
+                    "explanation": "The correct choice applies the concept deliberately and checks its result."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "practical_project": {
+    "title": "CSS Beginner Capstone",
+    "brief": "Build CSS Beginner Capstone using the skills from this course. Include a short explanation of your decisions, test the result on mobile and desktop, and make a small accessibility review.",
+    "deliverables": [
+      "Working project",
+      "Source files",
+      "Short learner reflection",
+      "Testing checklist"
+    ]
+  },
+  "final_assessment": {
+    "title": "CSS — Beginner final assessment",
+    "instructions": "Complete the practical task, then answer the knowledge checks and explain two implementation decisions.",
+    "passing_guidance": "Demonstrate the required structure, test the result, and explain why the chosen approach is appropriate.",
+    "marking_guidance": [
+      "Correctness and structure",
+      "Accessibility and usability",
+      "Practical application",
+      "Explanation and testing"
+    ]
+  },
+  "teacher_materials": {
+    "notes": "Encourage learners to build from semantic structure, test incrementally, and explain their choices rather than copying patterns without understanding them.",
+    "safety": "Use only learner-owned or authorised files and environments."
+  },
+  "provenance": {
+    "source": "Marian curriculum expansion",
+    "generated": "2026-11-25",
+    "content_note": "Standalone HTML/CSS curriculum added to complement the existing Web Development pathway."
+  }
+}
