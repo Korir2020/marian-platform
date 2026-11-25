@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PageShell } from './SiteChrome';
+import { LessonWorkspace } from '../studio/PathwayExperience';
+import '../studio/styles.css';
 
 const FILES = { python: 'python_programming', javascript: 'javascript_programming', 'software-development': 'software_development', 'web-development': 'web_development' };
 const line = '1px solid color-mix(in oklab, var(--learn-deep) 16%, transparent)';
@@ -106,6 +108,7 @@ export default function LessonViewer({ scr, go }) {
           <p style={S.sub}>{lesson.estimated_minutes} minutes</p>
           {lesson.objectives && <div style={S.blk}><h4 style={S.h4}>Objectives</h4><Gen v={lesson.objectives} /></div>}
           {(lesson.blocks || []).map((b, i) => <Block key={i} b={b} />)}
+        <LessonWorkspace theme={kind === 'software-development' ? 'software' : kind === 'javascript' ? 'javascript' : 'python'} moduleTitle={d.modules[sel[0]].title} topic={lesson.title} />
           {lesson.revision_notes && <div style={S.blk}><h4 style={S.h4}>Revision notes</h4><Gen v={lesson.revision_notes} /></div>}
           {extras.filter((e) => lesson[e]).map((e) => <div key={e} style={S.blk}><h4 style={S.h4}>{e.replace(/_/g, ' ')}</h4><Gen v={lesson[e]} /></div>)}
           <button type="button" style={S.back} onClick={() => { setSel(null); window.scrollTo(0, 0); }}>All lessons</button>
