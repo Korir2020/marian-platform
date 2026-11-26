@@ -75,7 +75,7 @@ export default function Teachers() {
     { label: "Class / stream", get: (s) => nm(x.sm, s.stream).label || "" },
   ];
   return (
-    <div>
+    <div className="pro-screen pro-screen--teachers">
       <h2>Teachers</h2>
       <Card>
         <DataTable cols={cols} rows={x.tc} search="Search teachers"

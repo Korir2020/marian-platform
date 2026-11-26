@@ -1,147 +1,92 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Cloud, Database, FileSearch, FlaskConical, LockKeyhole, Network, Radar, RefreshCcw, ShieldCheck, TerminalSquare } from 'lucide-react';
 import { PageShell } from './SiteChrome';
 import { cyberAcademy } from './cyberAcademyData';
 import { academyStats, stageStats } from './cyberStats';
-import {
-  ArrowLeft, ChevronRight, ShieldCheck, Terminal, Network, Lock, Radar, Bug,
-  Building2, Fingerprint, GraduationCap, FlaskConical,
-} from './CyberIcons';
-import heroImg from './assets/cyber-screen.jpg';
 import './cyber.css';
 
+const STAGE_ICONS = [TerminalSquare, Network, LockKeyhole, Radar, ShieldCheck, Cloud, FileSearch, CheckCircle2];
+const LAB_ICONS = { browser: TerminalSquare, external_vm: Network, cloud: Cloud };
 const clean = (t) => t.replace(/^Stage\s+\d+\s*[–—-]\s*/, '');
-const STAGE_META = [
-  [Terminal, 'Beginner'], [Network, 'Beginner'], [Lock, 'Intermediate'], [Radar, 'Intermediate'],
-  [Bug, 'Advanced'], [Building2, 'Advanced'], [Fingerprint, 'Expert'], [GraduationCap, 'Expert'],
-];
-const CODE = ['Learn', 'Observe', 'Practise', 'Investigate', 'Prove', 'Reflect', 'Advance'];
-const TABS = ['Overview', 'Journey', 'Labs'];
+
+function LabCockpit({ lab, onReset }) {
+  const Icon = LAB_ICONS[lab.type] || FlaskConical;
+  return (
+    <div className="cy-cockpit">
+      <div className="cy-cockpit-head">
+        <div><span className="cy-label">PRACTICE ENVIRONMENT</span><h3>{lab.title}</h3><p>{lab.purpose}</p></div>
+        <div className="cy-status"><span /> SIMULATION READY</div>
+      </div>
+      <div className="cy-cockpit-grid">
+        <aside className="cy-lab-sidebar">
+          <div className="cy-lab-scope"><ShieldCheck size={16} /><span>AUTHORISED TRAINING RANGE</span><b>Isolated scope</b></div>
+          <div className="cy-lab-item active"><Icon size={16} /><span>Workspace</span><small>01</small></div>
+          <div className="cy-lab-item"><FileSearch size={16} /><span>Evidence</span><small>02</small></div>
+          <div className="cy-lab-item"><CheckCircle2 size={16} /><span>Assessment</span><small>03</small></div>
+          <button type="button" onClick={onReset}><RefreshCcw size={14} /> Reset scenario</button>
+        </aside>
+        <div className="cy-lab-console">
+          <div className="cy-console-top"><span>LAB CONSOLE</span><span>{lab.type === 'cloud' ? 'DISPOSABLE CLOUD SANDBOX' : lab.type === 'browser' ? 'BROWSER SANDBOX' : 'ISOLATED VM RANGE'}</span></div>
+          <div className="cy-console-screen">
+            <div className="cy-terminal-line"><span>&gt;</span> environment status</div>
+            <div className="cy-terminal-result">scope: authorised training range<br />network: isolated<br />public inbound: disabled<br />reset: available</div>
+            <div className="cy-terminal-line"><span>&gt;</span> objective</div>
+            <div className="cy-terminal-result">{lab.exercise_types?.[0] || 'Complete the assigned practical exercise.'}</div>
+          </div>
+          <div className="cy-task-row"><div><span className="cy-label">CURRENT TASK</span><b>{lab.exercise_types?.[0] || 'Investigation exercise'}</b></div><span className="cy-task-state">NOT STARTED</span></div>
+        </div>
+        <aside className="cy-evidence">
+          <div><span className="cy-label">EVIDENCE BOARD</span><b>0 / {Math.min(4, lab.features?.length || 4)}</b></div>
+          <div className="cy-evidence-list">{(lab.features || []).slice(0, 5).map((f, i) => <div key={f}><span>{String(i + 1).padStart(2, '0')}</span><p>{f}</p><i /></div>)}</div>
+          <button type="button">Open evidence checklist <ArrowRight size={14} /></button>
+        </aside>
+      </div>
+      <div className="cy-cockpit-foot"><span><Database size={14} /> {lab.resources?.memory || lab.resources?.memory === '' ? lab.resources.memory : 'Session resources configured'}</span><span><Network size={14} /> {lab.architecture}</span></div>
+    </div>
+  );
+}
 
 export default function CyberAcademyPage({ go }) {
-  const [tab, setTab] = useState('Overview');
-  const [open, setOpen] = useState(0);
-  const { stages, labs } = cyberAcademy;
+  const [tab, setTab] = useState('journey');
+  const [stage, setStage] = useState(0);
+  const [labKey, setLabKey] = useState(cyberAcademy.labs[0]?.key);
+  const [resetCount, setResetCount] = useState(0);
   const totals = academyStats(cyberAcademy);
-  const stats = [
-    [totals.stages, 'stages'],
-    [totals.lessons, 'lessons'],
-    [totals.activities, 'activities'],
-    [totals.labs, 'lab types'],
-  ];
-
+  const activeStage = cyberAcademy.stages[stage];
+  const activeLab = useMemo(() => cyberAcademy.labs.find((l) => l.key === labKey) || cyberAcademy.labs[0], [labKey]);
+  const stats = stageStats(activeStage);
   return (
     <PageShell go={go} active="site-learning">
-      <div className="cy-wrap">
-        <div className="cy-main">
-          <div className="cy-scan" />
-          <div className="cy-in">
-            <button type="button" className="cy-back" onClick={() => go('site-learning')}>
-              <ArrowLeft size={16} />Back
-            </button>
-            <p className="cy-eyebrow">// MARIAN CYBERSECURITY ACADEMY</p>
-            <h1 className="cy-h1">
-              Learn the idea. <span>Build the skill.</span> Prove the competence.
-            </h1>
-            <p className="cy-lead">A clear path from zero to professional security practice, built on evidence.</p>
-
-            <figure className="cy-fig">
-              <img src={heroImg} alt="Security operations screen showing live threat activity, network traffic and system status" width="1280" height="800" />
-              <figcaption><span className="cy-dot" /> Live security operations</figcaption>
-            </figure>
-
-            <div className="cy-tabs">
-              {TABS.map((x) => (
-                <button key={x} type="button" className={'cy-tab' + (tab === x ? ' on' : '')} onClick={() => setTab(x)}>{x}</button>
-              ))}
-            </div>
-
-            <div className="cy-stats">
-              {stats.map(([n, l]) => (
-                <div key={l} className="cy-stat"><b>{n}</b><span>{l}</span></div>
-              ))}
-            </div>
-
-            {tab !== 'Labs' && (
-              <>
-                <h2 className="cy-label">THE LEARNING CODE</h2>
-                <div className="cy-code">
-                  {CODE.map((c, i) => (
-                    <span key={c}>
-                      <span className="cy-pill">{c}</span>
-                      {i < CODE.length - 1 && <ChevronRight size={12} />}
-                    </span>
-                  ))}
-                </div>
-
-                <h2 className="cy-label">THE PROGRESSION</h2>
-                <ol className="cy-line">
-                  {stages.map((s, i) => {
-                    const [Icon, level] = STAGE_META[i] || STAGE_META[STAGE_META.length - 1];
-                    const on = open === i;
-                    const st = stageStats(s);
-                    return (
-                      <li key={s.number}>
-                        <button type="button" className={'cy-stage' + (on ? ' on' : '')} onClick={() => setOpen(on ? null : i)}>
-                          <div className="cy-ico"><Icon size={20} /></div>
-                          <div className="cy-body">
-                            <div className="cy-top">
-                              <div>
-                                <span className="cy-num">{String(i + 1).padStart(2, '0')}</span>
-                                <h3 className="cy-name">{clean(s.title)}</h3>
-                              </div>
-                              <span className="cy-badge">{level}</span>
-                            </div>
-                            {(on || tab === 'Overview') && <p className="cy-desc">{s.description}</p>}
-                            <span className="cy-meta">{st.modules} modules · {st.lessons} lessons · {st.activities} activities</span>
-                            {on && tab === 'Journey' && (
-                              <div className="cy-mods">
-                                {s.modules.map((m, mi) => (
-                                  <div key={m.title} className="cy-mod">
-                                    <b>{m.title}</b>
-                                    <small>MODULE {mi + 1} · {m.lessons.length} lessons</small>
-                                    <em>{m.lessons.map((l) => l.title).join(' · ')}</em>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ol>
-                <button type="button" className="mw-btn mw-btn--learn mw-btn--sm" style={{ marginTop: 16 }} onClick={() => go('payment-gate')}>Start the Academy</button>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>{stages.map((s, i) => <button key={s.number} type="button" className="mw-btn mw-btn--ghost mw-btn--sm" onClick={() => go('lessons:cyber:' + (i + 1))}>Read stage {i + 1}</button>)}</div>
-              </>
-            )}
-
-            {tab === 'Labs' && (
-              <div className="cy-labs">
-                {labs.map((l) => (
-                  <div key={l.key} className="cy-lab">
-                    <div className="cy-lab-head">
-                      <div className="cy-ico"><FlaskConical size={20} /></div>
-                      <div>
-                        <h3 className="cy-lab-name">{l.title}</h3>
-                        <p className="cy-lab-desc">{l.purpose}</p>
-                      </div>
-                    </div>
-                    <div className="cy-strip">$ preview --not-live<span className="cy-blink">_</span></div>
-                  </div>
-                ))}
-                <div className="cy-dash">
-                  <FlaskConical size={20} />
-                  Live labs are not available yet. Each lab is designed to run in a sandboxed, resettable environment.
-                </div>
-              </div>
-            )}
-
-            <div className="cy-safe">
-              <ShieldCheck size={20} />
-              <p><strong>Safe by design.</strong> <span>Offensive techniques are confined to explicitly authorised, isolated environments.</span></p>
+      <div className="cy-academy">
+        <header className="cy-header">
+          <div className="cy-header-in">
+            <button type="button" className="cy-back" onClick={() => go('site-learning')}><ArrowLeft size={15} /> Learning</button>
+            <div className="cy-kicker">MARIAN SECURITY ACADEMY</div>
+            <div className="cy-header-grid">
+              <div><h1>Learn security.<br /><em>Operate with discipline.</em></h1><p>Eight deliberate stages from digital foundations to professional specialisation, with practical work designed around authorised, isolated environments.</p><div className="cy-hero-actions"><button type="button" onClick={() => { setTab('journey'); document.querySelector('.cy-work')?.scrollIntoView({ behavior: 'smooth' }); }}>Enter the academy <ArrowRight size={16} /></button><button type="button" onClick={() => { setTab('labs'); document.querySelector('.cy-work')?.scrollIntoView({ behavior: 'smooth' }); }}>View lab environments</button></div></div>
+              <div className="cy-command-card"><div><span>ACADEMY STATUS</span><b>READY</b></div><strong>{String(totals.stages).padStart(2, '0')}</strong><small>stages</small><div className="cy-command-line" /><p>{totals.lessons} lessons · {totals.activities} activities · {totals.labs} lab environments</p></div>
             </div>
           </div>
-        </div>
+        </header>
+
+        <main className="cy-work">
+          <div className="cy-tabs"><button className={tab === 'journey' ? 'on' : ''} onClick={() => setTab('journey')}>Academy journey</button><button className={tab === 'labs' ? 'on' : ''} onClick={() => setTab('labs')}>Lab environments</button></div>
+          {tab === 'journey' && <>
+            <section className="cy-journey-head"><div><span className="cy-label">THE ROADMAP</span><h2>Eight stages. One professional progression.</h2><p>Every stage builds the knowledge and practical habits required by the next.</p></div><div className="cy-progress-summary"><b>{String(stage + 1).padStart(2, '0')} / 08</b><span>stage selected</span></div></section>
+            <div className="cy-stage-layout">
+              <nav className="cy-stage-list">{cyberAcademy.stages.map((s, i) => { const I = STAGE_ICONS[i] || ShieldCheck; return <button key={s.number} className={stage === i ? 'active' : ''} onClick={() => setStage(i)}><span className="cy-stage-number">{String(i + 1).padStart(2, '0')}</span><I size={17} /><span><b>{clean(s.title)}</b><small>{stageStats(s).lessons} lessons · {stageStats(s).activities} practicals</small></span><ChevronRight size={14} /></button>; })}</nav>
+              <section className="cy-stage-detail"><div className="cy-stage-top"><div><span className="cy-label">STAGE {String(stage + 1).padStart(2, '0')}</span><h3>{clean(activeStage.title)}</h3><p>{activeStage.description}</p></div><div className="cy-stage-stat"><b>{stats.lessons}</b><span>lessons</span></div></div><div className="cy-module-grid">{activeStage.modules.map((m, i) => <article key={m.title}><span>MODULE {String(i + 1).padStart(2, '0')}</span><h4>{m.title}</h4><p>{m.lessons.length} lessons · {m.lessons.reduce((n, l) => n + l.activities, 0)} practical activities</p><button type="button" onClick={() => go(`lessons:cyber:${stage + 1}`)}>Enter module <ArrowRight size={14} /></button></article>)}</div><div className="cy-stage-footer"><div><span>STAGE CAPABILITY</span><b>Understand → Practise → Investigate → Prove</b></div><button type="button" onClick={() => go(`lessons:cyber:${stage + 1}`)}>Enter Stage {stage + 1} <ArrowRight size={15} /></button></div></section>
+            </div>
+          </>}
+
+          {tab === 'labs' && <>
+            <section className="cy-journey-head"><div><span className="cy-label">PRACTICAL INFRASTRUCTURE</span><h2>Labs that look and behave like real environments.</h2><p>These interfaces describe the intended isolated training environments. They do not claim to execute real commands until a sandbox service is connected.</p></div></section>
+            <div className="cy-lab-picker">{cyberAcademy.labs.map((l) => <button key={l.key} className={labKey === l.key ? 'active' : ''} onClick={() => setLabKey(l.key)}><FlaskConical size={16} /><span><b>{l.title}</b><small>{l.level} · {l.type.replace('_', ' ')}</small></span></button>)}</div>
+            <LabCockpit key={`${activeLab.key}-${resetCount}`} lab={activeLab} onReset={() => setResetCount((n) => n + 1)} />
+          </>}
+
+          <div className="cy-safety"><ShieldCheck size={20} /><div><b>Safe by design</b><span>Offensive techniques belong only inside explicitly authorised, isolated training environments. No production targets are connected to these learning interfaces.</span></div></div>
+        </main>
       </div>
     </PageShell>
   );

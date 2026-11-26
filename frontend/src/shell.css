@@ -254,3 +254,29 @@
 
 /* Moon button lives in the top bars, beside the profile */
 body .mu-top .m-theme-btn,body .mu-dt-r .m-theme-btn{width:34px;height:34px;min-width:34px;min-height:34px;padding:0;border-radius:50%;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.3)}
+
+
+/* MARIAN APPLICATION SHELL — quiet enterprise workspace */
+.mu-shell { background: #f6f8f6; }
+@media (min-width:900px) {
+  .mu-side { width: 236px; padding: 16px 12px 12px; background: #082b20; border-right: 1px solid rgba(255,255,255,.06); }
+  .mu-body { margin-left: 236px; background: #f6f8f6; }
+  .mu-dt { height: 58px; padding: 0 26px; background: rgba(255,255,255,.94); color: #163126; border-bottom: 1px solid #e2e9e4; box-shadow: 0 1px 0 rgba(15,42,31,.02); backdrop-filter: blur(12px); }
+  .mu-dt-app { color: #789087; font-size: 9px; letter-spacing: .16em; font-weight: 850; }
+  .mu-dt-t { color: #173126; font-size: 15px; font-weight: 780; }
+  .mu-dt-s { color: #7a8a82; font-size: 11px; }
+  .mu-content { max-width: 1480px; padding: 30px 34px 54px; }
+  .mu-content::before { display: none; }
+  .mu-crumb { display: flex !important; align-items: center; gap: 7px; margin: 0 0 10px; color: #829088; font-size: 10px; letter-spacing: .01em; }
+  .mu-title { display: block !important; margin: 0 0 18px; color: #132b20; font-size: clamp(25px, 2.3vw, 34px); font-weight: 790; letter-spacing: -.045em; }
+  .mu-ctx { margin-top: -10px; }
+  .mu-nav small { color: #7fa092; font-weight: 800; }
+  .mu-nav button { height: 38px; border-radius: 9px; color: #dbe9e2; }
+  .mu-nav button:hover { background: rgba(255,255,255,.075); }
+  .mu-nav button.on { background: #124b38 !important; box-shadow: inset 3px 0 0 #bde95f !important; }
+  .mu-brand { padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,.07); }
+}
+@media (max-width:899px) {
+  .mu-top { background: #082b20; height: 54px; }
+  .mu-content { background: #f6f8f6; padding-top: 20px; }
+}
