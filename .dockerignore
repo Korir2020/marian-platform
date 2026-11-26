@@ -1,0 +1,6 @@
+frontend
+.git
+node_modules
+src-backup*
+v3_legacy_tests
+backend/db.sqlite3

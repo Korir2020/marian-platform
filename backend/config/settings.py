@@ -85,12 +85,30 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+_db_url = os.environ.get("DATABASE_URL", "").strip()
+if _db_url:
+    from urllib.parse import urlparse, unquote, parse_qs
+    _u = urlparse(_db_url)
+    _opts = {k: v[0] for k, v in parse_qs(_u.query).items() if k in ("sslmode", "channel_binding")}
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": _u.path.lstrip("/"),
+            "USER": unquote(_u.username or ""),
+            "PASSWORD": unquote(_u.password or ""),
+            "HOST": _u.hostname or "",
+            "PORT": str(_u.port or 5432),
+            "CONN_MAX_AGE": 60,
+            "OPTIONS": _opts,
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Password validation
