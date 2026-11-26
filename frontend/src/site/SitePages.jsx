@@ -210,7 +210,7 @@ export function SiteLearning({ go }) {
             <h1 className="ms-h1b ms-ink">A learning path as unique as <em>every learner</em>.</h1>
             <p className="ms-lead2 ms-muted">CBC subjects plus Computer Science, Life Skills and more — paced for each learner, with progress parents can follow.</p>
             <div className="ms-hero2-cta">
-              <Btn v="learn" onClick={() => go("pathways")}>Start Personalized Learning <Icon name="arrow" s={18} /></Btn>
+              <Btn v="learn" onClick={() => { window.location.href = "/studio.html#/learn"; }}>Start Personalized Learning <Icon name="arrow" s={18} /></Btn>
               <Btn v="quiet" onClick={() => go("login")}>I already have an account</Btn>
             </div>
           </div>
