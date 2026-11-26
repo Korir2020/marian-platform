@@ -114,7 +114,7 @@ export default function Fees({ admin = false }) {
     { label: "Status", render: (x) => <Badge kind={statusKind[x.status] || "info"}>{x.status}</Badge> },
     { label: "Action", render: (x) => <><Button size="sm" kind="ghost" onClick={() => openHistory(x)}>History</Button><Button size="sm" kind="ghost" onClick={() => setStatementId(x.student)}>Statement</Button>{admin && x.status !== "waived" && <Button size="sm" kind="ghost" onClick={() => openAdjust(x)}>Adjust</Button>}{Number(x.balance) > 0 && <Button size="sm" kind="teal" onClick={() => { setPay(x); setPayment({ amount: x.balance, method: "mpesa", reference: "" }); }}>Payment</Button>}{admin && x.status !== "paid" && x.status !== "waived" && <Button size="sm" kind="danger" onClick={() => waive(x)}>Waive</Button>}</> },
   ];
-  return <div className="fees-page">
+  return <div className="fees-page pro-screen pro-screen--fees">
     <div className="fees-kpis">
       <div><small>Collected</small><b>{money(data.amount_paid)}</b></div>
       <div><small>Outstanding</small><b>{money(data.balance)}</b></div>

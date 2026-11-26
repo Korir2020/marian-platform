@@ -103,7 +103,7 @@ export default function Exams({ d }) {
   ];
   const byScope = (a, b) => (pos(a) ?? 1e9) - (pos(b) ?? 1e9);
   return (
-    <div>
+    <div className="pro-screen pro-screen--exams">
       <h2>Examinations</h2>
       <p className="sub">Create one Opener, Mid-term, or End-term examination per class and term. Each examination has its own approval, publication, results, and report route.</p>
       <Card>

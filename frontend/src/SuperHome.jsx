@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "./api";
 import "./superhome.css";
+import "./executive-ui.css";
 
 const get = async (p) => { try { const r = await api(p); return r.ok ? await r.json() : null; } catch (e) { return null; } };
 const list = (j) => (Array.isArray(j) ? j : j && Array.isArray(j.results) ? j.results : []);
@@ -64,7 +65,7 @@ export default function SuperHome({ me, d, go }) {
     <div className="plain sx">
       <header className="sx-head">
         <div>
-          <p className="sx-eyebrow">Platform control · Superadmin</p>
+          <p className="sx-eyebrow"><span className="sx-eyebrow-dot" /> Platform control <span>Superadmin</span></p>
           <h2>{greet}{me && me.username ? ", " + me.username : ""}</h2>
           <p className="sx-date">{today}</p>
         </div>

@@ -6,6 +6,7 @@ import Bell from "./Bell";
 import Search from './Search';
 import { Modal, Button } from "./ui";
 import './shell.css';
+import "./executive-ui.css";
 
 // Sidebar sections. Page keys are unchanged so old links and bookmarks still work.
 const GROUPS = [
@@ -54,6 +55,7 @@ export default function Shell({ tabs, tab, go, me, out, term, children }) {
   const rest = tabs.slice(4);
   const pick = (t) => { setMore(false); setDrawer(false); go(t); };
   const school = me && me.school ? me.school.name : "";
+  const roleLabel = ({ school_admin: 'School administrator', superadmin: 'Platform administrator', teacher: 'Teacher workspace', bursar: 'Finance workspace', secretary: 'Secretary workspace', parent: 'Parent workspace' }[me?.role] || 'Marian workspace');
   const toggle = () => { const v = !small; setSmall(v); wr('mu-small', v ? '1' : ''); };
   const dropPic = () => { setPic(''); wr(pk, ''); api('/api/connect/avatar/', 'DELETE').catch(() => {}); setMenu(false); };
   const onFile = (e) => {
@@ -94,7 +96,7 @@ export default function Shell({ tabs, tab, go, me, out, term, children }) {
     <input ref={fileRef} type="file" accept="image/*" hidden onChange={onFile} />
     <div className="mu-top" role="banner">
       <button className="mu-burger" onClick={() => setDrawer(true)} aria-label="Open menu" aria-expanded={drawer}>☰</button>
-      <h1>{tab}</h1>
+      <div className="mu-mobile-title"><span>{school || "Marian"}</span><h1>{tab}</h1></div>
       <Search tabs={tabs} go={go} /><Bell go={go} />{profile}
     </div>
     {drawer && <div className="mu-back" onClick={() => setDrawer(false)} />}
@@ -109,12 +111,12 @@ export default function Shell({ tabs, tab, go, me, out, term, children }) {
           <div className="mu-grp" key={name}><small>{name}</small>{list.map(item)}</div>))}
       </div>
       <div className="mu-sf">{avatar}
-        <span className="mu-nm"><b>{user}</b><small>{school}</small></span>
+        <span className="mu-nm"><b>{user}</b><small>{roleLabel}</small><small className="mu-school">{school}</small></span>
         <button onClick={out}>Log out</button></div>
     </div>
     <div className="mu-body">
       <div className="mu-dt">
-        <h1 className="mu-dt-t">{tab}</h1>
+        <div className="mu-dt-title"><span className="mu-dt-app">MARIAN</span><h1 className="mu-dt-t">{tab}</h1></div>
         {school && <span className="mu-dt-s">{school}</span>}
         {term && <span className="mu-dt-s">Term: {term}</span>}
         <div className="mu-dt-r"><Search tabs={tabs} go={go} hotkey /><Bell go={go} />{profile}</div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "./api";
 import "./dash2.css";
+import "./executive-ui.css";
 
 const hues = { draft: "#4b7bec", submitted: "#f1a927", approved: "#31b88a", locked: "#8c68d8" };
 
