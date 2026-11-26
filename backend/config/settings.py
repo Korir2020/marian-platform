@@ -245,7 +245,8 @@ if os.environ.get("DB_NAME"):
         "OPTIONS": {"sslmode": os.environ.get("DB_SSLMODE", "prefer")},
     }
 elif not DEBUG:
-    raise ImproperlyConfigured("Set DB_NAME (PostgreSQL) when DEBUG is off.")
+    if not os.environ.get("DATABASE_URL"):
+        raise ImproperlyConfigured("Set DB_NAME or DATABASE_URL (PostgreSQL) when DEBUG is off.")
 
 # The release-readiness runner may isolate Django's disposable test database.
 # This option is test-only, works only with the SQLite development backend, and
