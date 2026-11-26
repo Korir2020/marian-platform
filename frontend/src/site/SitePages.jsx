@@ -249,16 +249,6 @@ export function SiteLearning({ go }) {
           <h2 className="ms-h2">Python, JavaScript, Software and Web</h2>
         </div>
         <PathwayCards go={go} />
-        <button type="button" className="cy-card" onClick={() => go('site-cybersecurity')}>
-          <span>NEW</span>
-          <b>Cybersecurity Academy</b>
-          Eight stages from foundations to specialization, with safe lab practice.
-        </button>
-        <button type='button' className='cy-card' onClick={() => { window.location.href = '/studio.html'; }}>
-          <span>NEW</span>
-          <b>Marian Studio</b>
-          Practice lab, knowledge hub, creative studio and language pathways.
-        </button>
       </section>
 
       <section className="ms-how">
