@@ -8,7 +8,7 @@ import { creativeArts } from './data/creativeArts';
 
 const icons: Record<string,string> = { python:'🐍', javascript:'✳', software:'⌘', web:'◈', html:'H', css:'#' };
 
-function LessonWorkspace({ theme, moduleTitle, topic }: { theme: string; moduleTitle: string; topic: string }) {
+export function LessonWorkspace({ theme, moduleTitle, topic }: { theme: string; moduleTitle: string; topic: string }) {
  const [tab,setTab]=useState<'lesson'|'workspace'|'preview'|'challenge'>('workspace');
  const configs:any={
   python:{file:'main.py',language:'PYTHON',title:'Python Lab',code:'def total_price(price, quantity):\n    return price * quantity\n\nprint(total_price(250, 3))',terminal:'$ python main.py\n750\nProcess finished successfully.',side:'Interactive Python workspace',challenge:'Change the function so it adds a 10% student discount before returning the total.',hint:'Calculate the subtotal first, then multiply it by 0.90.',check:(v:string)=>/0\.9|10\s*%|discount/i.test(v)&&/return/i.test(v)},
