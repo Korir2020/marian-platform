@@ -243,14 +243,6 @@ export function SiteLearning({ go }) {
         </div>
       </section>
 
-      <section className="ms-container ms-block">
-        <div className="ms-block-head">
-          <p className="ms-eyebrow ms-c-learn">New pathways</p>
-          <h2 className="ms-h2">Python, JavaScript, Software and Web</h2>
-        </div>
-        <PathwayCards go={go} />
-      </section>
-
       <section className="ms-how">
         <div className="ms-container ms-how-in">
           <h2 className="ms-how-h">How it works</h2>
