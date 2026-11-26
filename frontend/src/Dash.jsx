@@ -15,7 +15,6 @@ import ReportCards from "./ReportCards";
 import ReportModule from "./ReportModule";
 import MigrationCentre from "./MigrationCentre";
 import TeacherTodo from "./TeacherTodo";
-import TeacherHome from "./TeacherHome";
 import Students from "./Students";
 import Password from "./Password";
 import Deputies from "./Deputies";
@@ -132,7 +131,7 @@ export default function Dash({ onOut, onOfflineBoot, offlineSession, onForget, o
   useEffect(() => { if (offlineSession) return undefined; const h = async () => { if (!d || !["school_admin", "teacher"].includes(d.role)) return; const b = await api("/api/dashboard/"); if (b.ok) setD(await b.json()); }; window.addEventListener("marian:dashboard-refresh", h); return () => window.removeEventListener("marian:dashboard-refresh", h); }, [d, offlineSession]);
   const role = d && d.role;
   const need = (el) => (d.active_term ? el : <p className="plain">No active term yet. Create one in Setup first.</p>);
-  const home = d && <>{role === "school_admin" ? <Dash2Top me={me} d={d} go={setTab} tabs={{ Students: 1, Teachers: 1, Exams: 1, Marks: 1, Approve: 1, Fees: 1 }}><Dash2Low d={d} go={setTab} tabs={{ Approve: 1, Exams: 1, Marks: 1, Reports: 1, Students: 1, Analytics: 1, Fees: 1 }} /><Dash2Mid d={d} go={setTab} /></Dash2Top> : role === "superadmin" ? <SuperHome me={me} d={d} go={setTab} /> : role === "teacher" ? <TeacherHome me={me} d={d} go={setTab} /> : <Home me={me} d={d} />}{role === "school_admin" && <Dash2Act go={setTab} />}<Password /></>;
+  const home = d && <>{role === "school_admin" ? <Dash2Top me={me} d={d} go={setTab} tabs={{ Students: 1, Teachers: 1, Exams: 1, Marks: 1, Approve: 1, Fees: 1 }}><Dash2Low d={d} go={setTab} tabs={{ Approve: 1, Exams: 1, Marks: 1, Reports: 1, Students: 1, Analytics: 1, Fees: 1 }} /><Dash2Mid d={d} go={setTab} /></Dash2Top> : role === "superadmin" ? <SuperHome me={me} d={d} go={setTab} /> : <Home me={me} d={d} />}{role === "teacher" && <TeacherTodo d={d} go={setTab} />}{role === "teacher" && <Mine d={d} />}{role === "school_admin" && <Dash2Act go={setTab} />}<Password /></>;
   const forgetFromWorkspace = () => {
     if (window.confirm("Forget this device? The encrypted offline marks copy and remembered username will be removed, and you will be signed out locally.")) onForget?.();
   };

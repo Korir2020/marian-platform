@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { ArrowRight, Brain, Code2, ShieldCheck, Sparkles } from "lucide-react";
 import { Icon } from "./icons";
 import { PageShell } from "./SiteChrome";
 import schoolImg from "./assets/school-management.jpg";
 import learnImg from "./assets/personalized-learning.jpg";
+import { PathwayCards } from "./PathwayPage";
 
 function Btn({ v, size = "xl", className = "", onClick, children }) {
   return (
@@ -186,91 +185,20 @@ export function SiteSchool({ go }) {
 
 /* ───────────── Personalized Learning ───────────── */
 
-const LEARNING_GROUPS = [
-  {
-    title: "Core Curriculum",
-    eyebrow: "FOUNDATION",
-    text: "The school curriculum and essential learner skills.",
-    items: [["bookcheck", "CBC Curriculum", "Grades 1–12, aligned to KICD strands and competencies.", "Core"]],
-  },
-  {
-    title: "Computing & Technology",
-    eyebrow: "BUILD",
-    text: "A deliberate path from first code to professional technical practice.",
-    items: [
-      ["code", "Python", "Think in code, automate useful work and build programs.", "Programming"],
-      ["code", "JavaScript", "Make interfaces interactive and learn modern application logic.", "Programming"],
-      ["code", "Software Development", "Think like an engineer: design, test, review and ship.", "Engineering"],
-      ["code", "Web Development", "Build complete modern web experiences from front to back.", "Web"],
-      ["code", "HTML", "Build the structure and semantics of real web pages.", "Web"],
-      ["code", "CSS", "Create responsive, accessible and maintainable interfaces.", "Web"],
-      ["shield", "Cybersecurity Academy", "Progress from foundations to professional security practice.", "Security"],
-    ],
-  },
-  {
-    title: "Languages",
-    eyebrow: "COMMUNICATE",
-    text: "Structured language pathways with practice and progression.",
-    items: [
-      ["languages", "Kiswahili", "Beginner to advanced language practice.", "Language"],
-      ["languages", "English", "Communication, vocabulary and confident expression.", "Language"],
-      ["languages", "French", "Build useful French step by step.", "Language"],
-      ["languages", "German", "Build useful German step by step.", "Language"],
-      ["languages", "Spanish", "Build useful Spanish step by step.", "Language"],
-      ["languages", "Mandarin", "Build useful Mandarin step by step.", "Language"],
-      ["languages", "Arabic", "Build useful Arabic step by step.", "Language"],
-    ],
-  },
-  {
-    title: "Creative Arts",
-    eyebrow: "CREATE",
-    text: "Learn, practise, make and build a portfolio of real creative work.",
-    items: [
-      ["palette", "Music", "Rhythm, melody, composition and listening.", "Studio"],
-      ["palette", "Drawing & Painting", "Line, form, colour, shading and perspective.", "Studio"],
-      ["palette", "Visual Design", "Design principles, typography, colour and digital work.", "Studio"],
-      ["palette", "Drama & Theatre", "Character, script, rehearsal and performance.", "Studio"],
-      ["palette", "Dance & Movement", "Movement vocabulary, rhythm and choreography.", "Studio"],
-      ["palette", "Storytelling", "Build stories, scenes and creative writing confidence.", "Studio"],
-    ],
-  },
+const TRACKS = [
+  ["bookcheck", "CBC Curriculum", "Grades 1–12, aligned to KICD strands and competencies.", "Core"],
+  ["code", "Computer Science", "Logic, coding, web and AI basics — from first steps to projects.", "Beyond"],
+  ["heart", "Life Skills", "Communication, wellbeing, leadership and decision-making.", "Beyond"],
+  ["languages", "Languages", "English, Kiswahili and French with speaking practice.", "Beyond"],
+  ["wallet", "Financial Literacy", "Saving, budgeting and starting small businesses.", "Beyond"],
+  ["palette", "Creative Arts", "Music, drawing and storytelling to build confidence.", "Beyond"],
 ];
 
-const FEATURED_COURSES = [
-  ["python", "Python", "Programming", "Build from first principles to useful programs.", "site-pathway-python", "PY"],
-  ["javascript", "JavaScript", "Programming", "From logic to interactive applications.", "site-pathway-javascript", "JS"],
-  ["html", "HTML", "Web", "Build the semantic structure of the web.", "site-pathway-html", "HTML"],
-  ["css", "CSS", "Web", "Style interfaces with precision and accessibility.", "site-pathway-css", "CSS"],
-  ["cybersecurity", "Cybersecurity", "Security", "Train through eight professional stages.", "site-cybersecurity", "SEC"],
-  ["software-development", "Software Development", "Engineering", "Plan, build, test and ship reliable software.", "site-pathway-software-development", "SD"],
-  ["web-development", "Web Development", "Web", "Build modern front-end and back-end experiences.", "site-pathway-web-development", "WEB"],
+const STEPS = [
+  ["01", "Tell us about the learner", "Grade, interests and how much time they have each week."],
+  ["02", "Get a personal path", "MARIAN builds a plan that mixes CBC and skills beyond it."],
+  ["03", "Learn and level up", "Lessons adapt as they progress. Parents see every win."],
 ];
-
-function CourseCarousel({ go }) {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const id = window.setInterval(() => setIndex((n) => (n + 1) % FEATURED_COURSES.length), 3800);
-    return () => window.clearInterval(id);
-  }, []);
-  const course = FEATURED_COURSES[index];
-  return (
-    <div className="ms-course-stage" aria-label="Featured courses">
-      <div key={course[0]} className="ms-course-3d">
-        <div className="ms-course-3d-shadow" />
-        <div className={`ms-course-3d-card ms-course-${course[0]}`}>
-          <span className="ms-course-code">{course[5]}</span>
-          <span className="ms-course-kind">{course[2]}</span>
-          <strong>{course[1]}</strong>
-          <p>{course[3]}</p>
-          <button type="button" onClick={() => go(course[4])}>Enter path <ArrowRight size={15} /></button>
-        </div>
-      </div>
-      <div className="ms-course-dots" aria-hidden="true">
-        {FEATURED_COURSES.map((x, i) => <span key={x[0]} className={i === index ? "on" : ""} />)}
-      </div>
-    </div>
-  );
-}
 
 export function SiteLearning({ go }) {
   return (

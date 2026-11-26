@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { api } from "./api";
 import Ic from "./icons";
 import "./dash2.css";
-import "./executive-ui.css";
 
 const money = (v) => {
   const n = Number(v);

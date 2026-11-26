@@ -1,6 +1,5 @@
 import Ic from "./icons";
 import "./dash2.css";
-import "./executive-ui.css";
 
 const num = (v) => (v === undefined || v === null ? "\u2014" : v);
 
@@ -41,15 +40,9 @@ export default function Dash2Top({ me, d, go, tabs, children }) {
           <p className="d2-eyebrow">{school || "School overview"}</p>
           <h1>Welcome back, {name}</h1>
         </div>
-        <div className="d2-header-right">
-          <div className="d2-period">
-            <span>Academic year <b>{t ? t.academic_year : "\u2014"}</b></span>
-            <span>Term <b>{t ? t.name : "No active term"}</b></span>
-          </div>
-          <div className="d2-header-actions" aria-label="Dashboard actions">
-            {tabs?.Students && <button type="button" onClick={() => go("Students")}>Students</button>}
-            {tabs?.Approve && <button type="button" onClick={() => go("Approve")} className="primary">Review approvals</button>}
-          </div>
+        <div className="d2-period">
+          <span>Academic year <b>{t ? t.academic_year : "\u2014"}</b></span>
+          <span>Term <b>{t ? t.name : "No active term"}</b></span>
         </div>
       </header>
       <section className="d2-stats" aria-label="School statistics">
