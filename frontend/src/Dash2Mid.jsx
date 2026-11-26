@@ -3,7 +3,6 @@ import { api } from "./api";
 import Ic from "./icons";
 import ExamOperations from "./ExamOperations";
 import "./dash2.css";
-import "./executive-ui.css";
 
 const K = [
   ["draft", "Draft", "#4b7bec"],

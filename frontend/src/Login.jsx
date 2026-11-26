@@ -74,32 +74,16 @@ export default function Login({ onDone, onForgot, onBack, onJoin, onRegister }) 
   return (
     <main className="lp">
       <section className="lp-aside" aria-label="About Marian">
-        <div className="lp-aside-top">
-          <div className="lp-brand lp-brand-d"><Logo size={42} /><span>Marian</span></div>
-          <span className="lp-secure">SECURE SCHOOL WORKSPACE</span>
+        <div className="lp-brand lp-brand-d"><Logo size={42} /><span>Marian</span></div>
+        <div>
+          <h1>Smarter Schools. Brighter Futures.</h1>
+          <p>One secure workspace for your school.</p>
+          <ul className="lp-list">
+            <li>Marks and analytics</li><li>Classes and teachers</li>
+            <li>Report cards</li><li>Parent access</li>
+          </ul>
         </div>
-        <div className="lp-aside-main">
-          <div className="lp-copy">
-            <p className="lp-kicker">ONE SCHOOL. ONE WORKSPACE.</p>
-            <h1>Run your school with clarity.</h1>
-            <p>Marian brings academics, people, communication, finance and learning into one calm workspace.</p>
-            <ul className="lp-list">
-              <li><span>01</span> Academics & learner progress</li>
-              <li><span>02</span> Teachers, classes & attendance</li>
-              <li><span>03</span> Reports, finance & operations</li>
-            </ul>
-          </div>
-          <div className="lp-visual" aria-hidden="true">
-            <img src="/assets/login-pic.webp" alt="" />
-            <div className="lp-visual-overlay">
-              <span>Marian workspace</span>
-              <strong>Everything your school needs.</strong>
-            </div>
-          </div>
-        </div>
-        <div className="lp-aside-bottom">
-          <span>Built for schools</span><span>•</span><span>Secure by design</span><span>•</span><span>Made for people</span>
-        </div>
+        <span />
       </section>
       <section className="lp-panel">
         <div className="lp-card">

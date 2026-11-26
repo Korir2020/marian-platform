@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "./api";
 import Ic from "./icons";
 import "./teacher-home.css";
-import "./executive-ui.css";
 
 // Teacher home dashboard. Uses only existing endpoints:
 //   d (from /api/dashboard/): active_term, assignments, my_marks_by_status

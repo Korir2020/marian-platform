@@ -68,7 +68,7 @@ export default function Students({ d }) {
   const inspectCsv = async (commit = false) => { if (!csv) return; setCsvBusy(true); const fd = new FormData(); fd.append("file", csv); fd.append("commit", String(commit)); const r = await upload("/api/students/import/", fd); const j = await r.json().catch(() => ({})); setCsvBusy(false); if (!r.ok) return toast(j.detail || "Could not process CSV", "err"); setPreview(j); if (j.committed) { toast(`${j.created} students imported`, "ok"); setCsv(null); load(); } };
   const tableCols = [...cols, { label: "Profile", render: (r) => <Button size="sm" kind="secondary" onClick={() => setProfile(r.id)}>Open</Button> }];
   return (
-    <div className="pro-screen pro-screen--students">
+    <div>
       <h2>Students</h2>
       <StatCard label="Total students" value={x.count} />
       <Card title="Add student">

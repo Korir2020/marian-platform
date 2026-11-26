@@ -669,7 +669,7 @@ export default function Marks({ _d, offlineMode = false, offlinePayload = null, 
   };
 
   return (
-    <div className="pro-screen pro-screen--marks">
+    <div>
       <h2>Teacher marks entry</h2>
       <p>Select a draft examination, class, stream, and your assigned subject. Registered learners appear automatically. Zero is a valid scored mark; choose Absent explicitly. Blank entries remain Pending.</p>
 

@@ -90,7 +90,7 @@ export default function Staff() {
       ? <b>{q.code}</b> : "") },
     { label: "Actions", render: act },
   ];
-  return (<div className="pro-screen pro-screen--staff">
+  return (<div>
     <Card title="Join requests">
       <DataTable cols={cols} rows={rows} search="Search staff"
         empty="No join requests yet" /></Card>

@@ -36,7 +36,7 @@ export default function Platform({ d }) {
     { label: "Admin username", key: "admin_username" },
   ];
   return (
-    <div className="pro-screen pro-screen--platform">
+    <div>
       <h2>Schools</h2>
       <StatCard label="Registered schools" value={(d.schools || []).length} />
       <StatCard label="Students on the platform" value={(d.schools || []).reduce((a, s) => a + (Number(s.students) || 0), 0)} />
