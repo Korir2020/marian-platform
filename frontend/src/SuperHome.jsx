@@ -71,6 +71,7 @@ export default function SuperHome({ me, d, go }) {
         <div className="sx-actions">
           <button className="sx-btn" onClick={() => go("Registrations")}>Review registrations</button>
           <button className="sx-btn pri" onClick={() => go("Schools")}>Manage schools</button>
+          <button className="sx-btn" onClick={() => { window.location.href = "/studio.html#/"; }}>Marian Studio</button>
         </div>
       </header>
 
@@ -143,8 +144,8 @@ export default function SuperHome({ me, d, go }) {
       </div>
 
       <section className="sx-quick" aria-label="Superadmin tools">
-        {[["Schools", "Create and suspend schools"], ["Registrations", "Approve new schools"], ["Transfers", "Move teachers between schools"], ["Admins", "School administrator accounts"], ["Backups", "Full platform backup"], ["Audit", "Every change, traced"], ["Feedback", "What schools are saying"]].map(([t, s]) => (
-          <button key={t} className="sx-tool" onClick={() => go(t)}><b>{t}</b><small>{s}</small></button>
+        {[["Schools", "Create and suspend schools"], ["Registrations", "Approve new schools"], ["Transfers", "Move teachers between schools"], ["Admins", "School administrator accounts"], ["Backups", "Full platform backup"], ["Audit", "Every change, traced"], ["Feedback", "What schools are saying"], ["Marian Studio", "Author and publish Academy content"]].map(([t, s]) => (
+          <button key={t} className="sx-tool" onClick={() => t === "Marian Studio" ? (window.location.href = "/studio.html#/") : go(t)}><b>{t}</b><small>{s}</small></button>
         ))}
       </section>
     </div>
