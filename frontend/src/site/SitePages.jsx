@@ -256,7 +256,6 @@ export function SiteLearning({ go }) {
               </div>
             ))}
           </div>
-          <Btn v="white" className="ms-how-btn" onClick={() => go("pathways")}>Build my learning path <Icon name="arrow" s={18} /></Btn>
         </div>
       </section>
     </PageShell>
