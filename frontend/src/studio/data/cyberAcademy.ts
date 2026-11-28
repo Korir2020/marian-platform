@@ -717,8 +717,8 @@ export const cyberAcademy = {
               "activities": 2,
               "lab": "dfir-malware",
               "objectives": [
-                "Explain Attack paths, pivoting and controlled post-exploitation in beginner-friendly language and then use the correct professional terminology.",
-                "Perform a controlled practical task related to Attack paths, pivoting and controlled post-exploitation and produce reproducible evidence."
+                "Explain how an attacker who controls one computer can reach other computers (pivoting), and why this makes one weak system a risk to the whole network.",
+                "In the lab, trace the evidence of an attack path from one host to another, and write down two controls (such as network segmentation or least privilege) that would have stopped it."
               ]
             },
             {
